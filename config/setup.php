@@ -1,17 +1,14 @@
 <?php
 	include_once('database.php');
 	try {
-		$sql_co = new PDO('mysql:host=localhost:3307', $DB_USER, $DB_PASSWORD);
+		$sql_co = new PDO($SB_DSN, $DB_USER, $DB_PASSWORD);
+		var_dump($sql_co);
 		$sql_co->setAttribute(PDO::ATTR_ERRMODE, PDO_ERRMODE_EXCEPTION);
-		$sql_co->query("CREATE DATABASE IF NOT EXISTS `camagru`");
 	}
 	catch (PDOexception $error){
 		die("FAIL: " . $error->getMessage());
 	}
-	$err = $sql_co->query("USE camagru");
-	if (!$err)
-		die("FAIL: USE camagru");
-	$err = $sql_co->query("CREATE TABLE IF NOT EXISTS camagru.users
+	$err = $sql_co->query("CREATE TABLE IF NOT EXISTS users
 						(
 							id INT NOT NULL AUTO_INCREMENT,
 							login VARCHAR(255) NOT NULL,
@@ -26,7 +23,7 @@
 	else
 		echo("TABLE USERS CREATED !\n" . '<br>');
 	$c_key = md5(microtime(TRUE) * 10000);
-	$err = $sql_co->query("INSERT INTO camagru.users
+	$err = $sql_co->query("INSERT INTO users
 						(
 							login,
 							password,
@@ -43,7 +40,7 @@
 		die("FAIL: CREATE ADMIN USER");
 	else
 		echo("ADMIN USER CREATED!\n" . '<br>');
-	$err = $sql_co->query("CREATE TABLE IF NOT EXISTS camagru.img
+	$err = $sql_co->query("CREATE TABLE IF NOT EXISTS img
 						(
 							id INT NOT NULL AUTO_INCREMENT,
 							source_img MEDIUMTEXT CHARACTER SET ascii NOT NULL,
