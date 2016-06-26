@@ -9,12 +9,22 @@
 	}
 	$login = $_GET['login'];
 	$c_key = $_GET['c_key'];
-	$result = $sql_co->query("SELECT c_key, actif, login FROM users WHERE login LIKE '" . $login . "'");
-	if (!$result || !($user = $result->fetch(PDO::FETCH_ASSOC)))
-		("This account does not exist");
+	$query = $sql_co->prepare("SELECT c_key, actif, login FROM users WHERE login LIKE :login");
+	$query->execute(array(':login' => $login));
+	$user = $query->fetch(PDO::FETCH_ASSOC);
+	if ($user === FALSE || count($user) === 0)
+		echo "This account does not exist";
 	else {
-		if ($user['c_key'] === 1) {
-			
+		if ($user['actif'] == 1) {
+			echo "This account is already activated !";
+		} else {
+			$query = $sql_co->prepare("UPDATE users SET actif = 1 WHERE login LIKE :login");
+			$ret = $query->execute(array(':login' => $login));
+			if ($ret === TRUE)
+				echo "Your account has been activated !";
+			else
+				echo "An error occured ...";
 		}
 	}
 ?>
+	<meta http-equiv="refresh" content="3;url=login.php"/>

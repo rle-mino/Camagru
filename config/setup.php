@@ -3,6 +3,7 @@
 	try {
 		$sql_co = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 		$sql_co->setAttribute(PDO::ATTR_ERRMODE, PDO_ERRMODE_EXCEPTION);
+		$sql_co->query("DROP TABLE img, users");
 	}
 	catch (PDOexception $error){
 		die("FAIL: " . $error->getMessage());
@@ -22,7 +23,7 @@
 	else
 		echo("TABLE USERS CREATED !\n" . '<br>');
 	$c_key = md5(microtime(TRUE) * 10000);
-	$err = $sql_co->query("INSERT INTO users
+	$query = $sql_co->prepare("INSERT INTO users
 						(
 							login,
 							password,
@@ -30,11 +31,15 @@
 							c_key
 						) VALUES
 						(
-							'admin',
-							'" . hash('whirlpool', 'admin') . "',
-							'admin@admin.com',
-							'" . $c_key . "'
+							:login,
+							:passwd,
+							:mail,
+							:c_key
 						)");
+	$err = $query->execute(array(':login' => 'admin',
+						':passwd' => hash('whirlpool', 'admin'),
+						':mail' => 'admin@admin.com',
+						':c_key' => $c_key));
 	if (!$err)
 		die("FAIL: CREATE ADMIN USER");
 	else

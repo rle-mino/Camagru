@@ -13,7 +13,7 @@
 			<p>Confirm mail</p><input type="text" name="mail_confirm" value="">
 			<input type="submit" name="submit" value="GO">
 		</form>
-		<!-- <script src="create_account.js"></script> -->
-		<!-- <script src="../ajax_tools.js"></script> -->
+		<script src="create_account.js"></script>
+		<script src="../ajax_tools.js"></script>
 	</body>
 </html>
