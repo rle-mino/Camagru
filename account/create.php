@@ -1,6 +1,7 @@
 <?php
-	include_once('../php_tools.php');
-	include_once('../config/database.php');
+	$rootDir = dirname(__DIR__, 1);
+	require_once($rootDir . '/php_tools.php');
+	require_once($rootDir . '/config/database.php');
 	$errors = array();
 	if (!isset($_POST) || !isset($_POST['submit']) || $_POST['submit'] != 'GO') {
 		$errors['submit'] = 'An error occured';
@@ -49,7 +50,7 @@
 			die();
 		}
 		$sql_co->setAttribute(PDO::ATTR_ERRMODE, PDO_ERRMODE_EXCEPTION);
-		$query = "SELECT login, mail FROM camagru.users
+		$query = "SELECT login, mail FROM users
 					WHERE login LIKE " . $sql_co->quote($_POST['login']) . "
 					OR mail LIKE " . $sql_co->quote($_POST['mail']);
 		$list = $sql_co->query($query);
@@ -73,7 +74,7 @@
 			die();
 		}
 		$c_key = md5(microtime(TRUE) * 100000);
-		$query = "INSERT INTO camagru.users
+		$query = "INSERT INTO users
 							(
 								login,
 								password,
@@ -95,8 +96,8 @@
 			$subject = "Activate your account";
 			$from = "From: activationcamagru@gmail.com";
 			$message = "Welcome to Camagru !\n
-			Click on the following link to activate your account on camagru :\n
-			http://localhost:8080/activation.php?login=" . urlencode($_POST['login']) . "&c_key=" . urlencode($c_key);
+			Click on the following link to activate your camagru's account :\n
+			http://localhost:8080/account/activation.php?login=" . urlencode($_POST['login']) . "&c_key=" . urlencode($c_key);
 			$err = mail($dest, $subject, $message, $form);
 		}
 		if (!isAjax()) {

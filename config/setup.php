@@ -1,8 +1,7 @@
 <?php
 	include_once('database.php');
 	try {
-		$sql_co = new PDO($SB_DSN, $DB_USER, $DB_PASSWORD);
-		var_dump($sql_co);
+		$sql_co = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 		$sql_co->setAttribute(PDO::ATTR_ERRMODE, PDO_ERRMODE_EXCEPTION);
 	}
 	catch (PDOexception $error){
@@ -14,7 +13,7 @@
 							login VARCHAR(255) NOT NULL,
 							password CHAR(255) NOT NULL,
 							mail VARCHAR(255) NOT NULL,
-							actif INT NOT NULL DEFAULT 1,
+							actif INT NOT NULL DEFAULT 0,
 							c_key VARCHAR(32) NOT NULL,
 							PRIMARY KEY (id)
 						)");
