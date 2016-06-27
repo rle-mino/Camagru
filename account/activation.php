@@ -1,12 +1,9 @@
 <?php
 	$rootDir = dirname(__DIR__, 1);
 	require_once($rootDir . '/config/database.php');
-	try {
-		$sql_co = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-	} catch (PDOexception $e) {
-		echo "error" . $e->getMessage();
-		die();
-	}
+	$sql_co = connectToDB();
+	if (!$sql_co)
+		die ("An error occured");
 	$login = $_GET['login'];
 	$c_key = $_GET['c_key'];
 	$query = $sql_co->prepare("SELECT c_key, actif, login FROM users WHERE login LIKE :login");

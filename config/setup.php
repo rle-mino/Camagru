@@ -1,13 +1,10 @@
 <?php
-	include_once('database.php');
-	try {
-		$sql_co = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-		$sql_co->setAttribute(PDO::ATTR_ERRMODE, PDO_ERRMODE_EXCEPTION);
-		$sql_co->query("DROP TABLE img, users");
-	}
-	catch (PDOexception $error){
-		die("FAIL: " . $error->getMessage());
-	}
+	require_once('database.php');
+	require_once('../php_tools.php');
+
+	$sql_co = connectToDB();
+	if (!$sql_co)
+		die ("FAIL : CONNECT TO DATABASE");
 	$err = $sql_co->query("CREATE TABLE IF NOT EXISTS users
 						(
 							id INT NOT NULL AUTO_INCREMENT,

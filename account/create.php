@@ -32,23 +32,20 @@
 	writeErrors($errors);
 	if (empty($errors))
 	{
-		try {
-			$sql_co = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-		} catch (PDOexception $e) {
-			echo "error" . $e->getMessage();
-			die();
-		}
-		$sql_co->setAttribute(PDO::ATTR_ERRMODE, PDO_ERRMODE_EXCEPTION);
-		$query = $sql_co->query("SELECT login, mail
+		$sql_co = connectToDB();
+		if (!$sql_co)
+			$errors("An error occured");
+		writeErrors($errors);
+		$query = $sql_co->prepare("SELECT login, mail
 								FROM users
 								WHERE login LIKE :login OR mail LIKE :mail");
-		$list = $query->execute(array(':login' => $sql_co->quote($_POST['login']),
-									':mail' => $sql_co->quote($_POST['mail'])));
-		if (($exist = $list->fetch(PDO::FETCH_ASSOC)))
+		$query->execute(array(':login' => $_POST['login'],
+										':mail' => $_POST['mail']));
+		if (($user = $query->fetch(PDO::FETCH_ASSOC)))
 		{
-			if ($exist['login'])
+			if ($user['login'] == $_POST['login'])
 				$errors['login'] = 'login already in use';
-			else if ($exist['mail'] && $exist['mail'])
+			else if ($user['mail'] == $_POST['mail'])
 				$errors['mail'] = 'mail already in use';
 			writeErrors($errors);
 		}
@@ -65,17 +62,17 @@
 								:mail,
 								:c_key
 							)");
-		$query->execute(array(':login' => $sql_co->quote($_POST['login']),
-									':passwd' => hash('whirlpool', $_POST['passwd']),
-									':mail' => $sql_co->quote($_POST['mail']),
-									':c_key' => $c_key));
+		$query->execute(array(':login' => $_POST['login'],
+								':passwd' => hash('whirlpool', $_POST['passwd']),
+								':mail' => $_POST['mail'],
+								':c_key' => $c_key));
 		$dest = $_POST['mail'];
 		$subject = "Activate your account";
 		$from = "From: activationcamagru@gmail.com";
 		$message = "Welcome to Camagru !\n
 		Click on the following link to activate your camagru's account :\n
 		http://localhost:8080/account/activation.php?login=" . urlencode($_POST['login']) . "&c_key=" . urlencode($c_key);
-		mail($dest, $subject, $message, $form);
+		echo mail($dest, $subject, $message, $form);
 		if (!isAjax()) {
 			echo('You are now registred, you have to confirm your mail address');
 		}

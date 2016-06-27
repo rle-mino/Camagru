@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	$_SESSION['login'] = NULL;
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,9 +9,9 @@
 	</head>
 	<body>
 <?php
-	if (isset($_SESSION['login']) && $_SESSION['login'] != '') {
+	if (isset($_SESSION['login']) && $_SESSION['login'] != "") {
 		?>
-		<meta http-equiv="refresh" content="3;url=login.php"/>
+		<meta http-equiv="refresh" content="3;url=../index.php"/>
 		<div>You are already connected...</div>
 		<?php
 	}
