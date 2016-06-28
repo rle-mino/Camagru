@@ -1,6 +1,7 @@
 <?php
 	session_start();
-	require_once('../php_tools.php');
+	$rootDir = dirname(__DIR__, 2);
+	require_once($rootDir . '/php_tools.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,14 +19,15 @@
 	}
 	else {
 		?>
-		<form id="modifAccount" action="modif.php" method="post">
+		<form id="modifAccount" action="<?php echo $rootDir . '/account/server/modif.php'?>" method="post">
 			<p>Mail</p><input type="text" name="mail" value="<?php echo getMail($_SESSION['login']);?>">
 			<p>Password</p><input type="password" name="old_passwd" value="">
 			<p>New password</p><input type="password" name="new_passwd" value="">
 			<input type="submit" name="submit" value="modify">
 		</form>
+		<a href="delete.php">Delete my account</a>
 		<script src="modif_account.js"></script>
-		<script src="../ajax_tools.js"></script>
+		<script src="<?php echo $rootDir . '/ajax_tools.js';?>"></script>
 		<?php
 	}
 ?>

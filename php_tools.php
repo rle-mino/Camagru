@@ -1,11 +1,12 @@
 <?php
 	function connectToDB()
 	{
-		require_once('config/database.php');
+		include('config/database.php');
 		try {
 			$sql_co = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
 			$sql_co->setAttribute(PDO::ATTR_ERRMODE, PDO_ERRMODE_EXCEPTION);
 		} catch (PDOException $Exception) {
+			echo $Exception->getMessage();
 			return (NULL);
 		}
 		return ($sql_co);
@@ -13,12 +14,7 @@
 
 	function getMail($login)
 	{
-		require_once('config/database.php');
-		try {
-			$sql_co = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-		} catch (PDOexception $e) {
-			return (NULL);
-		}
+		$sql_co = connectToDB();
 		$query = $sql_co->prepare("SELECT mail FROM users WHERE login LIKE :login");
 		$query->execute(array(':login' => $login));
 		if ($user = $query->fetch(PDO::FETCH_ASSOC))

@@ -1,10 +1,9 @@
 <?php
 	session_start();
-	$rootDir = dirname(__DIR__, 1);
+	$rootDir = '../../';
 	require_once($rootDir . '/php_tools.php');
-	require_once($rootDir . '/config/database.php');
 	$errors = NULL;
-	if (!isset($_POST) || $_POST['submit'] != 'GO') {
+	if ($_POST['submit'] != 'GO') {
 		$errors['submit'] = "An error occured";
 		writeErrors($errors);
 	}
@@ -40,13 +39,16 @@
 		if (!$errors && $user['actif'] == 0)
 			$errors['login'] = 'This account needs to be activated, a mail has been sent to ' . $user['mail'] ;
 		else if (!$errors)
+		{
+			echo "SALITTTTT";
 			$_SESSION['login'] = $user['login'];
+		}
 	}
 	else
 		$errors['login'] = 'Unknow user';
 	writeErrors($errors);
 	if (!isAjax()) {
-		echo '<meta http-equiv="refresh" content="3;url=../index.php"/>';
+		echo '<meta http-equiv="refresh" content="3;url=../../index.php"/>';
 		echo 'You are now connected, You will be redirected in few seconds';
 	}
 ?>

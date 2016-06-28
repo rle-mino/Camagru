@@ -1,4 +1,4 @@
-var form = document.querySelector('#loginForm');
+var form = document.querySelector('#createAccountForm');
 
 form.addEventListener('submit', function (e)
 {
@@ -25,25 +25,14 @@ form.addEventListener('submit', function (e)
 			{
 				if (ajax.status != 200)
 				{
-					var errors = JSON.parse(ajax.responseText);
-					var errorsKey = Object.keys(errors);
-					for (var i = 0; i < errorsKey.length; i++)
-					{
-						var key = errorsKey[i];
-						var error = errors[key];
-						var input = document.querySelector('[name=' + key + ']');
-						var span = document.createElement('span');
-						span.innerHTML = error;
-						span.className = 'isError';
-						input.parentNode.insertBefore(span, input.nextSibling);
-					}
+					displayAjaxErrors(ajax);
 					button.value = 'GO';
 					button.disabled = false;
 				}
 				else
 				{
 					var success = document.createElement('span');
-					success.innerHTML = "You are now connected";
+					success.innerHTML = "You are now registred, you have to confirm your mail address";
 					var successButton = document.querySelector('[type="submit"]');
 					successButton.parentNode.insertBefore(success, successButton.nextSibling);
 					var inputs = form.querySelectorAll('input');

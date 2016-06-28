@@ -1,6 +1,6 @@
 <?php
-	$rootDir = dirname(__DIR__, 1);
-	require_once($rootDir . '/config/database.php');
+	$rootDir = dirname(__DIR__, 2);
+	require_once($rootDir . '/php_tools.php');
 	$sql_co = connectToDB();
 	if (!$sql_co)
 		die ("An error occured");
@@ -24,4 +24,4 @@
 		}
 	}
 ?>
-	<meta http-equiv="refresh" content="3;url=login.php"/>
+	<meta http-equiv="refresh" content="3;url=../client/login.php"/>

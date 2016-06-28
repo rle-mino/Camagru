@@ -1,7 +1,7 @@
 <?php
 	session_start();
-	require_once("../php_tools.php");
-
+	$rootDir = dirname(__DIR__, 2);
+	require_once($rootDir . '/php_tools.php');
 	$errors = [];
 	$new = [];
 	if (!isset($_SESSION['login']) || $_SESSION['login'] == '')

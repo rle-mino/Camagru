@@ -1,6 +1,6 @@
 <?php
-	require_once('../php_tools.php');
-	require_once('../config/database.php');
+	$rootDir = dirname(__DIR__, 2);
+	require_once($rootDir . '/php_tools.php');
 	$errors = array();
 	if (!isset($_POST) || !isset($_POST['submit']) || $_POST['submit'] != 'GO') {
 		$errors['submit'] = 'An error occured';
@@ -72,7 +72,7 @@
 		$message = "Welcome to Camagru !\n
 		Click on the following link to activate your camagru's account :\n
 		http://localhost:8080/account/activation.php?login=" . urlencode($_POST['login']) . "&c_key=" . urlencode($c_key);
-		echo mail($dest, $subject, $message, $form);
+		mail($dest, $subject, $message, $form);
 		if (!isAjax()) {
 			echo('You are now registred, you have to confirm your mail address');
 		}

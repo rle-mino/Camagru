@@ -1,4 +1,5 @@
-var form = document.querySelector('#createAccountForm');
+var form = document.querySelector('#modifAccount');
+var successButton = document.querySelector('[type=submit]');
 
 form.addEventListener('submit', function (e)
 {
@@ -25,33 +26,34 @@ form.addEventListener('submit', function (e)
 			{
 				if (ajax.status != 200)
 				{
-					var errors = JSON.parse(ajax.responseText);
-					var errorsKey = Object.keys(errors);
-					for (var i = 0; i < errorsKey.length; i++)
-					{
-						var key = errorsKey[i];
-						var error = errors[key];
-						var input = document.querySelector('[name=' + key + ']');
-						var span = document.createElement('span');
-						span.innerHTML = error;
-						span.className = 'isError';
-						input.parentNode.insertBefore(span, input.nextSibling);
-					}
-					button.value = 'GO';
+					displayAjaxErrors(ajax);
+					button.value = 'modify';
 					button.disabled = false;
 				}
 				else
 				{
-					var success = document.createElement('span');
-					success.innerHTML = "You are now registred, you have to confirm your mail address";
-					var successButton = document.querySelector('[type="submit"]');
-					successButton.parentNode.insertBefore(success, successButton.nextSibling);
+					var message = JSON.parse(ajax.responseText);
+					var messageKeys = Object.keys(message);
+					for (var k = 0; k < messageKeys.length; k++)
+					{
+						var key2 = messageKeys[k];
+						var mess = message[key2];
+						var input2 = document.querySelector('[name=' + key2 + ']');
+						var span2 = document.createElement('span');
+						span2.innerHTML = mess;
+						span2.class = 'success';
+						input2.parentNode.insertBefore(span2, input2.nextSibling);
+					}
 					var inputs = form.querySelectorAll('input');
 					for (var j = 0; j < inputs.length; j++) {
 						inputs[j].value = "";
 					}
 					successButton.disabled = true;
 					successButton.value = 'Success';
+					redir = document.createElement('meta');
+					redir.content = '3;url=../../index.php';
+					redir.httpEquiv = "refresh";
+					form.appendChild(redir);
 				}
 			}
 		};
