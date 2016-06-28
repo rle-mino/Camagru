@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$rootDir = dirname(__DIR__, 2);
+	$rootDir = '../..';
 	require_once($rootDir . '/php_tools.php');
 	$errors = [];
 	$new = [];

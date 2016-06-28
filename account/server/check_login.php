@@ -39,10 +39,7 @@
 		if (!$errors && $user['actif'] == 0)
 			$errors['login'] = 'This account needs to be activated, a mail has been sent to ' . $user['mail'] ;
 		else if (!$errors)
-		{
-			echo "SALITTTTT";
 			$_SESSION['login'] = $user['login'];
-		}
 	}
 	else
 		$errors['login'] = 'Unknow user';

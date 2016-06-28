@@ -1,12 +1,16 @@
 <?php
 	session_start();
-	$rootDir = '../../';
+	$rootDir = '../..';
 ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
 		<title>Login</title>
+		<style type="text/css">
+			html 	{background-color:#505050; color:white; font-family:verdana;}
+			a		{color:inherit;}
+		</style>
 	</head>
 	<body>
 <?php
@@ -23,8 +27,9 @@
 			<p>Password</p><input type="password" name="passwd" value="">
 			<input type="submit" name="submit" value="GO">
 		</form>
-		<!-- <script src="login.js"></script> -->
-		<!-- <script src="../../ajax_tools.js"></script> -->
+		<a href="<?php echo $rootDir . "/account/client/create_account.php";?>">Sign up !</a>
+		<script src="login.js"></script> 
+		<script src="../../ajax_tools.js"></script> 
 <?php
 	}
 ?>
