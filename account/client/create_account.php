@@ -1,6 +1,8 @@
 <?php
 	session_start();
 	$rootDir = '../..';
+	require_once($rootDir . '/php_tools.php');
+	require_once($rootDir . '/header.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,9 +14,12 @@
 			a		{color:inherit;}
 		</style>
 	</head>
+<?php
+	goHeader('register', "NO CHECK", $rootDir);
+?>
 	<body>
 <?php
-		if (!isset($_SESSION['login']) || $_SESSION['login'] == "") {
+		if (!isConnected($_SESSION)) {
 ?>
 			<form id="createAccountForm" action="<?php echo $rootDir . '/account/server/create.php'?>" method="post">
 				<p>Login</p><input  type="text" name="login" value="">

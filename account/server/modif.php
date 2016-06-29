@@ -34,12 +34,12 @@
 			$ret = NULL;
 			if (isset($new['mail']) && $new['mail'] != '' && isset($new['passwd']) && $new['passwd'] != '')
 			{
-				$query = $sql_co->prepare("UPDATE users SET mail = :mail, password = :passwd, actif = 0 WHERE login = :login");
+				$query = $sql_co->prepare("UPDATE users SET mail = :mail, password = :passwd WHERE login = :login");
 				$ret = $query->execute(array(':login' => $_SESSION['login'], ':passwd' => $new['passwd'], ':mail' => $new['mail']));
 			}
 			else if (isset($new['mail']) && $new['mail'] != '')
 			{
-				$query = $sql_co->prepare("UPDATE users SET mail = :mail, actif = 0 WHERE login = :login");
+				$query = $sql_co->prepare("UPDATE users SET mail = :mail, WHERE login = :login");
 				$ret = $query->execute(array(':login' => $_SESSION['login'], ':mail' => $new['mail']));
 			}
 			else if (isset($new['passwd']) && $new['passwd'] != '')

@@ -71,8 +71,8 @@
 		$from = "From: activationcamagru@gmail.com";
 		$message = "Welcome to Camagru !\n
 		Click on the following link to activate your camagru's account :\n
-		http://localhost:8080/account/activation.php?login=" . urlencode($_POST['login']) . "&c_key=" . urlencode($c_key);
-		$ret = mail($dest, $subject, $message, $form);
+		http://localhost:8080/account/server/activation.php?login=" . urlencode($_POST['login']) . "&c_key=" . urlencode($c_key);
+		mail($dest, $subject, $message, $from);
 		if (!isAjax()) {
 			echo('You are now registred, you have to confirm your mail address');
 		}

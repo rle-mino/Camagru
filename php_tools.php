@@ -12,6 +12,13 @@
 		return ($sql_co);
 	}
 
+	function isConnected($session)
+	{
+		if (isset($session) && isset($session['login']) && $session['login'] != "")
+			return (TRUE);
+		return (FALSE);
+	}
+
 	function getMail($login)
 	{
 		$sql_co = connectToDB();

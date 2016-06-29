@@ -1,9 +1,6 @@
 <?php
-	session_start();
+	require_once('header.php');
 	$rootDir = '.';
-	if (!isset($_SESSION['login']) || $_SESSION['login'] == "") {
-		?>
-		<meta http-equiv="refresh" content="3;url=<?php echo $rootDir . '/account/client/login.php'?>"/>
-		<div>You must be connected...</div>
-		<?php }
+	if (goHeader('Camagru', "CHECK", $rootDir) == FALSE)
+		return ;
 ?>
