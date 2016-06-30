@@ -30,7 +30,7 @@
 				else
 				{
 ?>
-					<a href="index.php">Camagru</a>
+					<a href="<?php echo $rootDir . '/index.php'?>">Camagru</a>
 					<a href="<?php echo $rootDir . '/account/client/modif_account.php'?>"><?php echo $_SESSION['login'];?></a>
 <?php
 					if (isConnected($_SESSION))

@@ -12,7 +12,7 @@
 	</form>
 	<a href="<?php echo $rootDir . "/account/client/forgot_password.php"?>">Forgot password ?</a>
 	<a href="<?php echo $rootDir . "/account/client/create_account.php";?>">Sign up !</a>
-	<script src="login.js"></script>
 	<script src="../../ajax_tools.js"></script>
+	<script src="login.js"></script>
 	</body>
 </html>

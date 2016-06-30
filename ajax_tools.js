@@ -1,3 +1,56 @@
+function queryHandler(form, buttonValue, linkToRedir)
+{
+	form.querySelector("[type='submit']").disable = true;
+	var errorsInForm = form.querySelectorAll('.isError');
+	for (var i = 0; i < errorsInForm.length; i++) {
+		errorsInForm[i].classList.remove('isError');
+		var span = errorsInForm[i];
+		if (span) {
+			span.parentNode.removeChild(span);
+		}
+	}
+	var data = new FormData(form);
+	var ajax = getAjaxOBJ();
+	if (ajax)
+	{
+		ajax.onreadystatechange = function() {
+			var button = form.querySelector("[type='submit']");
+			if (ajax.readyState !== 4)
+				button.value = 'Loading....';
+				button.disabled = true;
+			if (ajax.readyState === 4)
+			{
+				if (ajax.status != 200)
+				{
+					displayAjaxErrors(ajax);
+					button.value = buttonValue;
+					button.disabled = false;
+				}
+				else
+				{
+					var success = document.createElement('span');
+					success.innerHTML = ajax.responseText;
+					var successButton = document.querySelector('[type="submit"]');
+					successButton.parentNode.insertBefore(success, successButton.nextSibling);
+					var inputs = form.querySelectorAll('input');
+					for (var j = 0; j < inputs.length; j++) {
+						inputs[j].value = "";
+					}
+					successButton.disabled = true;
+					successButton.value = 'Success';
+					redir = document.createElement('meta');console.log(linkToRedir);
+					redir.content = '3;url=' + linkToRedir;
+					redir.httpEquiv = "refresh";
+					form.appendChild(redir);
+				}
+			}
+		};
+		ajax.open('POST', form.getAttribute('action'), true);
+		ajax.setRequestHeader('X-Requested-With', 'xmlhttprequest');
+		ajax.send(data);
+	}
+}
+
 function displayAjaxErrors (ajax) {
 	var errors = JSON.parse(ajax.responseText);
 	var errorsKey = Object.keys(errors);

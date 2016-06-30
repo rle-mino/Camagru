@@ -68,11 +68,10 @@
 								':c_key' => $c_key));
 		$dest = $_POST['mail'];
 		$subject = "Activate your account";
-		$from = "From: activationcamagru@gmail.com";
 		$message = "Welcome to Camagru !\n
 		Click on the following link to activate your camagru's account :\n
 		http://localhost:8080/account/server/activation.php?login=" . urlencode($_POST['login']) . "&c_key=" . urlencode($c_key);
-		mail($dest, $subject, $message, $from);
+		mail($dest, $subject, $message);
 		if (!isAjax()) {
 			echo('You are now registred, you have to confirm your mail address');
 		}
