@@ -19,9 +19,7 @@
 	$sql_co = connectToDB();
 	$query = $sql_co->prepare("UPDATE user SET password = :password WHERE mail LIKE :mail");
 	$query->execute(array(':password' => hash('whirlpool', $_POST['password']) ,':mail' => $_GET['mail']));
+	echo "Your password has been updated";
 	if (!isAjax())
-	{
-		echo "Your password has been updated";
 		echo '<meta http-equiv="refresh" content="3;url=' . $rootDir . '/account/client/login.php' . '"/>';
-	}
 ?>

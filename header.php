@@ -37,6 +37,7 @@
 					{
 ?>
 						<a href="<?php echo $rootDir . '/account/server/logout.php'?>">logout</a>
+						<a href="<?php echo $rootDir . '/pic/client/take.php'?>">Take a picture</a>
 <?php
 					}
 				}

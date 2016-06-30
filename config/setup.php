@@ -45,9 +45,7 @@
 						(
 							id INT NOT NULL AUTO_INCREMENT,
 							source_img MEDIUMTEXT CHARACTER SET ascii NOT NULL,
-							comments VARCHAR(255) NOT NULL,
 							nb_comments INT NOT NULL DEFAULT 0,
-							creator VARCHAR(255) NOT NULL,
 							crea_date TIMESTAMP NOT NULL,
 							likes INT NOT NULL DEFAULT 0,
 							PRIMARY KEY (id)

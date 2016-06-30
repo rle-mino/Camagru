@@ -39,7 +39,7 @@
 	function writeErrors($errors)
 	{
 		if (!empty($errors) && isAjax()) {
-			http_response_code(400);
+			http_response_code(201);
 			header('Content-Type: application/json');
 			echo(json_encode($errors));
 			die();

@@ -38,7 +38,7 @@ function queryHandler(form, buttonValue, linkToRedir)
 					}
 					successButton.disabled = true;
 					successButton.value = 'Success';
-					redir = document.createElement('meta');console.log(linkToRedir);
+					redir = document.createElement('meta');
 					redir.content = '3;url=' + linkToRedir;
 					redir.httpEquiv = "refresh";
 					form.appendChild(redir);

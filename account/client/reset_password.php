@@ -18,13 +18,13 @@
 			{
 ?>
 				<body>
-					<form class="resetPassword" action="<?php echo $rootDir . '/account/server/reset.php?' . $_GET['mail']?>" method="post">
+					<form id="resetPassword" action="<?php echo $rootDir . '/account/server/reset.php?' . $_GET['mail']?>" method="post">
 						<p>New password</p><input type="password" name="password" value="">
 						<p>Confirm</p><input type="password" name="password_check" value="">
 						<input type="submit" name="submit" value="reset">
 					</form>
-					<!-- <script src="reset_password.js"></script> -->
-					<!-- <script src="<?php echo $rootDir . '/ajax_tools.js';?>"></script> -->
+					<script src="<?php echo $rootDir . '/ajax_tools.js';?>"></script>
+					<script src="reset_password.js"></script>
 				</body>
 <?php
 			}
