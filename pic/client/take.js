@@ -19,19 +19,20 @@
 		  video: true,
 		  audio: false
 		},
-	function(stream) {
-		if (navigator.mozGetUserMedia) {
-			video.mozSrcObject = stream;
-		} else {
-			var vendorURL = window.URL || window.webkitURL;
-			video.src = vendorURL.createObjectURL(stream);
+		function(stream)
+		{
+			if (navigator.mozGetUserMedia) {
+				video.mozSrcObject = stream;
+			} else {
+				var vendorURL = window.URL || window.webkitURL;
+				video.src = vendorURL.createObjectURL(stream);
+			}
+			video.play();
+		},
+		function(err) {
+			console.log("An error occured! " + err);
 		}
-		video.play();
-	},
-	function(err) {
-		console.log("An error occured! " + err);
-	}
-  );
+	);
 
 	video.addEventListener('canplay', function(ev)
 	{
@@ -55,8 +56,14 @@
 		photo.setAttribute('src', data);
 	}
 
-	take.addEventListener('click', function(ev){
+	take.addEventListener('click', function(ev)
+	{
 		takepicture();
+		var submit = document.querySelector('[type="submit"]');
+		submit.disabled = false;
+		submit.addEventListener('click', function(e) {
+			e.preventDefault();
+		}, false);
 		ev.preventDefault();
 	}, false);
 })();

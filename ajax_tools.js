@@ -1,3 +1,39 @@
+function sendPicToServer()
+{
+	form = document.querySelector('.sendImage');
+	var ajax = getAjaxOBJ();
+	if (!ajax)
+		return (false);
+	ajax.onreadystatechange = function ()
+	{
+		if (ajax.readyState !== 4)
+		{
+			var button = document.querySelector('#take');
+			button.value = 'loading...';
+			button.disabled = true;
+			button = document.querySelector('.confirmButton');
+			button.value = 'loading...';
+			button.disabled = true;
+		}
+		if (ajax.readyState === 4)
+		{
+			var serverResponse = document.createElement('span');
+			serverResponse.innerHTML = ajax.responseText;
+			var result = document.querySelector('#result');
+			result.appendChild(serverResponse);
+			var button = document.querySelector('#take');
+			button.value = 'Take a picture';
+			button.disabled = false;
+			button = document.querySelector('.confirmButton');
+			button.value = 'send';
+			button.disabled = false;
+		}
+	}
+	ajax.open('POST', '../server/save_image.php', true);
+	ajax.setRequestHeader('X-Requested-With', 'xmlhttprequest');
+	ajax.send(form);
+}
+
 function queryHandler(form, buttonValue, linkToRedir)
 {
 	form.querySelector("[type='submit']").disable = true;
