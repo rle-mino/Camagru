@@ -63,6 +63,7 @@
 		submit.disabled = false;
 		submit.addEventListener('click', function(e) {
 			e.preventDefault();
+			sendPicToServer();
 		}, false);
 		ev.preventDefault();
 	}, false);
