@@ -1,9 +1,8 @@
 <?php
-	session_start();
 	$rootDir = '../..';
 	require_once($rootDir . '/php_tools.php');
 	require_once($rootDir . '/header.php');
-	if (goHeader('Update your informations', "CHECK", $rootdir) == FALSE)
+	if (goHeader('Update your informations', "CHECK", $rootDir) == FALSE)
 		return ;
 ?>
 	<body>

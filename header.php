@@ -31,11 +31,11 @@
 				{
 ?>
 					<a href="<?php echo $rootDir . '/index.php'?>">Camagru</a>
-					<a href="<?php echo $rootDir . '/account/client/modif_account.php'?>"><?php echo $_SESSION['login'];?></a>
 <?php
 					if (isConnected($_SESSION))
 					{
 ?>
+						<a href="<?php echo $rootDir . '/account/client/modif_account.php'?>"><?php echo $_SESSION['login'];?></a>
 						<a href="<?php echo $rootDir . '/account/server/logout.php'?>">logout</a>
 						<a href="<?php echo $rootDir . '/pic/client/take.php'?>">Take a picture</a>
 <?php

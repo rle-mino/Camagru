@@ -1,6 +1,10 @@
 function sendPicToServer()
 {
-	form = document.querySelector('.sendImage');
+	var form = document.querySelector('#sendImage');
+	var src = form.querySelector('#photo');
+	var img = form.querySelector('[name="imgsrc"]');
+	img.setAttribute('value', src.getAttribute('src'));
+	var data = new FormData(form);
 	var ajax = getAjaxOBJ();
 	if (!ajax)
 		return (false);
@@ -8,10 +12,10 @@ function sendPicToServer()
 	{
 		if (ajax.readyState !== 4)
 		{
-			// var button = document.querySelector('#take');
-			// button.value = 'loading...';
-			// button.disabled = true;
-			var button = document.querySelector('');
+			var button = document.querySelector('#take');
+			button.innerHTML = 'loading...';
+			button.disabled = true;
+			button = document.querySelector('[type="submit"]');
 			button.value = 'loading...';
 			button.disabled = true;
 		}
@@ -21,11 +25,14 @@ function sendPicToServer()
 			serverResponse.innerHTML = ajax.responseText;
 			var result = document.querySelector('#result');
 			result.appendChild(serverResponse);
+			button = document.querySelector('#take');
+			button.innerHTML = "Take a picture";
+			button.disabled = false;
 		}
 	}
-	ajax.open('POST', '../server/save_image.php', true);
+	ajax.open('POST', form.getAttribute('action'), true);
 	ajax.setRequestHeader('X-Requested-With', 'xmlhttprequest');
-	ajax.send(form);
+	ajax.send(data);
 }
 
 function queryHandler(form, buttonValue, linkToRedir)

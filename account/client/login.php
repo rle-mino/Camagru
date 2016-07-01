@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	$rootDir = '../..';
 	require_once($rootDir . '/header.php');
 	if (!goHeader('login', "NO CHECK", $rootDir))

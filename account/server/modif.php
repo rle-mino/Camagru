@@ -50,9 +50,9 @@
 			// RETURN VALUES
 			if ($ret)
 			{
-				if ($new['passwd'] != '')
+				if (isset($new['passwd']) && $new['passwd'] != '')
 					$good['new_passwd'] = "Your password has been updated";
-				if ($new['mail'] != '')
+				if (isset($new['mail']) && $new['mail'] != '')
 					$good['mail'] = "Your mail address has been updated, a confirmation code has been sent";
 				if (isAjax())
 					echo(json_encode($good));

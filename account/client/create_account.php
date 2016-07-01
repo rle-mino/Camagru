@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	$rootDir = '../..';
 	require_once($rootDir . '/php_tools.php');
 	require_once($rootDir . '/header.php');

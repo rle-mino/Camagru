@@ -4,11 +4,11 @@
 		include('config/database.php');
 		try {
 			$sql_co = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-			$sql_co->setAttribute(PDO::ATTR_ERRMODE, PDO_ERRMODE_EXCEPTION);
 		} catch (PDOException $Exception) {
 			echo $Exception->getMessage();
 			return (NULL);
 		}
+		$sql_co->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		return ($sql_co);
 	}
 
