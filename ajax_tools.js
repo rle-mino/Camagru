@@ -75,7 +75,7 @@ function queryHandler(form, buttonValue, linkToRedir)
 					}
 					successButton.disabled = true;
 					successButton.value = 'Success';
-					redir = document.createElement('meta');
+					var redir = document.createElement('meta');
 					redir.content = '3;url=' + linkToRedir;
 					redir.httpEquiv = "refresh";
 					form.appendChild(redir);
@@ -107,20 +107,20 @@ function getAjaxOBJ () {
 	var httpRequest = false;
 
 	if (window.XMLHttpRequest) {
-    	httpRequest = new XMLHttpRequest();
-    	if (httpRequest.overrideMimeType) {
-    		httpRequest.overrideMimeType('text/xml');
+		httpRequest = new XMLHttpRequest();
+		if (httpRequest.overrideMimeType) {
+			httpRequest.overrideMimeType('text/xml');
 		}
 	}
 	else if (window.ActiveXObject)
 	{
-    	try {
-    		httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
-    	} catch (e) {
-    		try {
-    			httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-    		} catch (e) {}
-    	}
+		try {
+			httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+			try {
+				httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (e) {}
+		}
 	}
 	return (httpRequest ? httpRequest : false);
 }

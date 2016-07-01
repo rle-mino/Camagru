@@ -2,7 +2,6 @@
 
   var streaming = false,
 		video = document.querySelector('#video'),
-		cover = document.querySelector('#cover'),
 		canvas = document.querySelector('#canvas'),
 		photo = document.querySelector('#photo'),
 		take = document.querySelector('#take'),
@@ -10,14 +9,14 @@
 		height = 0;
 
 	navigator.getMedia = ( navigator.getUserMedia ||
-						 navigator.webkitGetUserMedia ||
-						 navigator.mozGetUserMedia ||
-						 navigator.msGetUserMedia);
+						navigator.webkitGetUserMedia ||
+						navigator.mozGetUserMedia ||
+						navigator.msGetUserMedia);
 
 	navigator.getMedia(
 		{
-		  video: true,
-		  audio: false
+			video: true,
+			audio: false
 		},
 		function(stream)
 		{
@@ -34,16 +33,16 @@
 		}
 	);
 
-	video.addEventListener('canplay', function(ev)
+	video.addEventListener('canplay', function()
 	{
 		if (!streaming)
 		{
-		  height = video.videoHeight / (video.videoWidth/width);
-		  video.setAttribute('width', width);
-		  video.setAttribute('height', height);
-		  canvas.setAttribute('width', width);
-		  canvas.setAttribute('height', height);
-		  streaming = true;
+			height = video.videoHeight / (video.videoWidth/width);
+			video.setAttribute('width', width);
+			video.setAttribute('height', height);
+			canvas.setAttribute('width', width);
+			canvas.setAttribute('height', height);
+			streaming = true;
 		}
 	}, false);
 

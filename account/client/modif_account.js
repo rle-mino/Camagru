@@ -50,7 +50,7 @@ form.addEventListener('submit', function (e)
 					}
 					successButton.disabled = true;
 					successButton.value = 'Success';
-					redir = document.createElement('meta');
+					var redir = document.createElement('meta');
 					redir.content = '3;url=../../index.php';
 					redir.httpEquiv = "refresh";
 					form.appendChild(redir);
