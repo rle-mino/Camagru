@@ -1,0 +1,35 @@
+.img_thumb {
+    display: inline-block;
+}
+
+.img_thumb img {
+    width: 300px;
+    margin: 10px;
+}
+
+#superimposed {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+}
+
+#center {
+    text-align: center;
+    margin: auto;
+}
+
+#preview {
+    width: 600px;
+    padding: 0;
+    margin: 10px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+#result {
+    width: 600px;
+    padding: 0;
+    margin: 10px;
+    display: inline-block;
+    overflow: hidden;
+}

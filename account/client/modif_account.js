@@ -1,24 +1,21 @@
 var form = document.querySelector('#modifAccount');
 var successButton = document.querySelector('[type=submit]');
 
-form.addEventListener('submit', function (e)
+form.addEventListener('submit', (e) =>
 {
 	e.preventDefault();
 	form.querySelector("[type='submit']").disable = true;
-	var errorsInForm = form.querySelectorAll('.isError');
-	for (var i = 0; i < errorsInForm.length; i++) {
-		errorsInForm[i].classList.remove('isError');
-		var span = errorsInForm[i];
-		if (span) {
-			span.parentNode.removeChild(span);
-		}
-	}
-	var data = new FormData(form);
-	var ajax = getAjaxOBJ();
+	const errorsInForm = form.querySelectorAll('.isError');
+	errorsInForm.forEach((errorInForm) => {
+		errorInForm.classList.remove('isError');
+		errorInForm.parentNode.removeChild(errorInForm);
+	});
+	const data = new FormData(form);
+	const ajax = getAjaxOBJ();
 	if (ajax)
 	{
-		ajax.onreadystatechange = function() {
-			var button = form.querySelector("[type='submit']");
+		ajax.onreadystatechange = () => {
+			const button = form.querySelector("[type='submit']");
 			if (ajax.readyState !== 4)
 				button.value = 'Loading....';
 				button.disabled = true;
@@ -32,25 +29,23 @@ form.addEventListener('submit', function (e)
 				}
 				else
 				{
-					var message = JSON.parse(ajax.responseText);
-					var messageKeys = Object.keys(message);
-					for (var k = 0; k < messageKeys.length; k++)
+					const message = JSON.parse(ajax.responseText);
+					const messageKeys = Object.keys(message);
+					for (let k = 0; k < messageKeys.length; k++)
 					{
-						var key2 = messageKeys[k];
-						var mess = message[key2];
-						var input2 = document.querySelector('[name=' + key2 + ']');
-						var span2 = document.createElement('span');
+						const key2 = messageKeys[k];
+						const mess = message[key2];
+						const input2 = document.querySelector('[name=' + key2 + ']');
+						const span2 = document.createElement('span');
 						span2.innerHTML = mess;
 						span2.class = 'success';
 						input2.parentNode.insertBefore(span2, input2.nextSibling);
 					}
-					var inputs = form.querySelectorAll('input');
-					for (var j = 0; j < inputs.length; j++) {
-						inputs[j].value = "";
-					}
+					const inputs = form.querySelectorAll('input');
+					inputs.forEach((input) => input.value = "");
 					successButton.disabled = true;
 					successButton.value = 'Success';
-					var redir = document.createElement('meta');
+					const redir = document.createElement('meta');
 					redir.content = '3;url=../../index.php';
 					redir.httpEquiv = "refresh";
 					form.appendChild(redir);

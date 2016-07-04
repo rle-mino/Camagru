@@ -10,10 +10,11 @@
 			<meta charset="utf-8">
 			<title><?php echo $title;?></title>
 			<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+			<link href='style.css' rel='stylesheet' type='text/css'>
 			<style media="screen">
 				header 	{background-color:#404040; color:white; font-family:roboto;}
 				a		{color:inherit; text-decoration: none}
-				html 	{background-color:#505050; color:white; font-family:roboto;}
+				html 	{background-color:#505050; color:white; font-family:roboto; padding:0; margin:0}
 			</style>
 		</head>
 		<body>
@@ -38,6 +39,7 @@
 						<a href="<?php echo $rootDir . '/account/client/modif_account.php'?>"><?php echo $_SESSION['login'];?></a>
 						<a href="<?php echo $rootDir . '/account/server/logout.php'?>">logout</a>
 						<a href="<?php echo $rootDir . '/pic/client/take.php'?>">Take a picture</a>
+						<a href="<?php echo $rootDir . '/pic/client/user_galery.php'?>">Your pictures</a>
 <?php
 					}
 				}

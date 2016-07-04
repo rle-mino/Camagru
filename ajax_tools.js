@@ -1,14 +1,11 @@
 function sendPicToServer()
 {
-	var form = document.querySelector('#sendImage');
-	var src = form.querySelector('#photo');
-	var img = form.querySelector('[name="imgsrc"]');
-	img.setAttribute('value', src.getAttribute('src'));
-	var data = new FormData(form);
-	var ajax = getAjaxOBJ();
+	const form = document.querySelector('#sendImage');
+	const data = new FormData(form);
+	const ajax = getAjaxOBJ();
 	if (!ajax)
 		return (false);
-	ajax.onreadystatechange = function ()
+	ajax.onreadystatechange = () =>
 	{
 		if (ajax.readyState !== 4)
 		{
@@ -21,15 +18,14 @@ function sendPicToServer()
 		}
 		if (ajax.readyState === 4)
 		{
-			var serverResponse = document.createElement('span');
-			serverResponse.innerHTML = ajax.responseText;
-			var result = document.querySelector('#result');
-			result.appendChild(serverResponse);
 			button = document.querySelector('#take');
 			button.innerHTML = "Take a picture";
 			button.disabled = false;
+			button = form.querySelector('[type="submit"]');
+			button.value = ajax.responseText;
+			button.disables = false;
 		}
-	}
+	};
 	ajax.open('POST', form.getAttribute('action'), true);
 	ajax.setRequestHeader('X-Requested-With', 'xmlhttprequest');
 	ajax.send(data);
@@ -38,65 +34,60 @@ function sendPicToServer()
 function queryHandler(form, buttonValue, linkToRedir)
 {
 	form.querySelector("[type='submit']").disable = true;
-	var errorsInForm = form.querySelectorAll('.isError');
-	for (var i = 0; i < errorsInForm.length; i++) {
-		errorsInForm[i].classList.remove('isError');
-		var span = errorsInForm[i];
-		if (span) {
-			span.parentNode.removeChild(span);
-		}
-	}
-	var data = new FormData(form);
-	var ajax = getAjaxOBJ();
-	if (ajax)
+	const errorsInForm = form.querySelectorAll('.isError');
+	errorsInForm.forEach((errorInForm) => {
+		errorInForm.classList.remove('isError');
+		errorInForm.parentNode.removeChild(errorInForm);
+	});
+	const data = new FormData(form);
+	const ajax = getAjaxOBJ();
+	if (!ajax)
+		return ;
+	ajax.onreadystatechange = () =>
 	{
-		ajax.onreadystatechange = function() {
-			var button = form.querySelector("[type='submit']");
-			if (ajax.readyState !== 4)
-				button.value = 'Loading....';
-				button.disabled = true;
-			if (ajax.readyState === 4)
+		const button = form.querySelector("[type='submit']");
+		if (ajax.readyState !== 4)
+			button.value = 'Loading....';
+			button.disabled = true;
+		if (ajax.readyState === 4)
+		{
+			if (ajax.status != 200)
 			{
-				if (ajax.status != 200)
-				{
-					displayAjaxErrors(ajax);
-					button.value = buttonValue;
-					button.disabled = false;
-				}
-				else
-				{
-					var success = document.createElement('span');
-					success.innerHTML = ajax.responseText;
-					var successButton = document.querySelector('[type="submit"]');
-					successButton.parentNode.insertBefore(success, successButton.nextSibling);
-					var inputs = form.querySelectorAll('input');
-					for (var j = 0; j < inputs.length; j++) {
-						inputs[j].value = "";
-					}
-					successButton.disabled = true;
-					successButton.value = 'Success';
-					var redir = document.createElement('meta');
-					redir.content = '3;url=' + linkToRedir;
-					redir.httpEquiv = "refresh";
-					form.appendChild(redir);
-				}
+				displayAjaxErrors(ajax);
+				button.value = buttonValue;
+				button.disabled = false;
 			}
-		};
-		ajax.open('POST', form.getAttribute('action'), true);
-		ajax.setRequestHeader('X-Requested-With', 'xmlhttprequest');
-		ajax.send(data);
-	}
+			else
+			{
+				const success = document.createElement('span');
+				success.innerHTML = ajax.responseText;
+				const successButton = document.querySelector('[type="submit"]');
+				successButton.parentNode.insertBefore(success, successButton.nextSibling);
+				const inputs = form.querySelectorAll('input');
+				inputs.forEach((input) => input.value = '');
+				successButton.disabled = true;
+				successButton.value = 'Success';
+				const redir = document.createElement('meta');
+				redir.content = '3;url=' + linkToRedir;
+				redir.httpEquiv = "refresh";
+				form.appendChild(redir);
+			}
+		}
+	};
+	ajax.open('POST', form.getAttribute('action'), true);
+	ajax.setRequestHeader('X-Requested-With', 'xmlhttprequest');
+	ajax.send(data);
 }
 
 function displayAjaxErrors (ajax) {
-	var errors = JSON.parse(ajax.responseText);
-	var errorsKey = Object.keys(errors);
-	for (var i = 0; i < errorsKey.length; i++)
+	const errors = JSON.parse(ajax.responseText);
+	const errorsKey = Object.keys(errors);
+	for (let i = 0; i < errorsKey.length; i++)
 	{
-		var key = errorsKey[i];
-		var error = errors[key];
-		var input = document.querySelector('[name=' + key + ']');
-		var span = document.createElement('span');
+		const key = errorsKey[i];
+		const error = errors[key];
+		const input = document.querySelector('[name=' + key + ']');
+		const span = document.createElement('span');
 		span.innerHTML = error;
 		span.className = 'isError';
 		input.parentNode.insertBefore(span, input.nextSibling);

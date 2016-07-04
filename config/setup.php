@@ -47,7 +47,7 @@
 							author VARCHAR(255) NOT NULL,
 							source_img MEDIUMTEXT CHARACTER SET ascii NOT NULL,
 							nb_comments INT NOT NULL DEFAULT 0,
-							crea_date TIMESTAMP NOT NULL,
+							crea_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 							likes INT NOT NULL DEFAULT 0,
 							PRIMARY KEY (id)
 						)");
