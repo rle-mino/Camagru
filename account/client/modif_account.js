@@ -45,10 +45,7 @@ form.addEventListener('submit', (e) =>
 					inputs.forEach((input) => input.value = "");
 					successButton.disabled = true;
 					successButton.value = 'Success';
-					const redir = document.createElement('meta');
-					redir.content = '3;url=../../index.php';
-					redir.httpEquiv = "refresh";
-					form.appendChild(redir);
+					window.setTimeout("location=('../../index.php');",3000);
 				}
 			}
 		};

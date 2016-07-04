@@ -3,6 +3,13 @@
 	require_once($rootDir . '/header.php');
 	if (!goHeader('login', "NO CHECK", $rootDir))
 		return ;
+	if (isset($_SESSION['login']) && $_SESSION['login'] != "")
+	{
+?>
+		<meta http-equiv="refresh" content="3;url=<?php echo $rootDir . '/index.php'?>"/>
+		<div>You are already connected...</div>
+<?php
+	} else {
 ?>
 	<form id="loginForm" action="<?php echo $rootDir . '/account/server/check_login.php'?>" method="post">
 		<p>Login or mail</p><input  type="text" name="login" value="">
@@ -11,7 +18,9 @@
 	</form>
 	<a href="<?php echo $rootDir . "/account/client/forgot_password.php"?>">Forgot password ?</a>
 	<a href="<?php echo $rootDir . "/account/client/create_account.php";?>">Sign up !</a>
-	<script src="../../ajax_tools.js"></script>
-	<script src="login.js"></script>
+	<script defer src="../../ajax_tools.js"></script>
+	<script defer src="login.js"></script>
 	</body>
 </html>
+<?php }
+?>

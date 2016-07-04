@@ -10,17 +10,17 @@
 	$query->execute(array(':login' => $login));
 	$user = $query->fetch(PDO::FETCH_ASSOC);
 	if ($user === FALSE || count($user) === 0)
-		echo "This account does not exist";
+		echo "<html>This account does not exist</html>";
 	else {
 		if ($user['actif'] == 1) {
-			echo "This account is already activated !";
+			echo "<html>This account is already activated !</html>";
 		} else {
 			$query = $sql_co->prepare("UPDATE users SET actif = 1 WHERE login LIKE :login");
 			$ret = $query->execute(array(':login' => $login));
 			if ($ret === TRUE)
-				echo "Your account has been activated !";
+				echo "<html>Your account has been activated !</html>";
 			else
-				echo "An error occured ...";
+				echo "<html>An error occured ...</html>";
 		}
 	}
 ?>

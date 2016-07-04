@@ -19,7 +19,7 @@ window.onscroll = () => {
 					const div = document.createElement('div');
 					const a = document.createElement('a');
 					const img = document.createElement('img');
-					div.classname = 'img_thumb';
+					div.setAttribute('class', 'img_thumb');
 					a.href = 'image.php?img=' + newImage[id];
 					img.src = 'data:image/png;base64, ' + newImage[imgSRC];
 					div.appendChild(a);

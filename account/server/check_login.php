@@ -2,8 +2,9 @@
 	session_start();
 	$rootDir = '../../';
 	require_once($rootDir . '/php_tools.php');
-	$errors = NULL;
-	if ($_POST['submit'] != 'GO') {
+	$errors = [];
+	if (!isset($_POST['submit']) || $_POST['submit'] != 'GO')
+	{
 		$errors['submit'] = "An error occured";
 		writeErrors($errors);
 	}
@@ -44,7 +45,7 @@
 	else
 		$errors['login'] = 'Unknow user';
 	writeErrors($errors);
-	echo 'You are now connected, You will be redirected in few seconds';
+	echo '<html>You are now connected, You will be redirected in few seconds</html>';
 	if (!isAjax()) {
 		echo '<meta http-equiv="refresh" content="3;url=../../index.php"/>';
 	}

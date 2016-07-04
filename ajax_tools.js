@@ -1,3 +1,9 @@
+const arrayMethods = Object.getOwnPropertyNames( Array.prototype );
+arrayMethods.forEach( attachArrayMethodsToNodeList );
+function attachArrayMethodsToNodeList(methodName) {
+    NodeList.prototype[methodName] = Array.prototype[methodName];
+}
+
 function sendPicToServer()
 {
 	const form = document.querySelector('#sendImage');
@@ -33,13 +39,13 @@ function sendPicToServer()
 
 function queryHandler(form, buttonValue, linkToRedir)
 {
-	form.querySelector("[type='submit']").disable = true;
 	const errorsInForm = form.querySelectorAll('.isError');
 	errorsInForm.forEach((errorInForm) => {
 		errorInForm.classList.remove('isError');
 		errorInForm.parentNode.removeChild(errorInForm);
 	});
 	const data = new FormData(form);
+	data.append("submit", form.querySelector("[type='submit']").value);
 	const ajax = getAjaxOBJ();
 	if (!ajax)
 		return ;
@@ -67,10 +73,7 @@ function queryHandler(form, buttonValue, linkToRedir)
 				inputs.forEach((input) => input.value = '');
 				successButton.disabled = true;
 				successButton.value = 'Success';
-				const redir = document.createElement('meta');
-				redir.content = '3;url=' + linkToRedir;
-				redir.httpEquiv = "refresh";
-				form.appendChild(redir);
+				window.setTimeout("location=('../../index.php');",3000);
 			}
 		}
 	};
