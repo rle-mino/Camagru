@@ -1,5 +1,4 @@
 (function() {
-	const thumbnails = document.querySelector('#thumbnails');
 	let actualPage = 0;
 	let prevScrollPos = window.pageYOffset;
 	let updateInitiated = false;
@@ -74,8 +73,12 @@
 			}
 			if (ajax.readyState === 4 && ajax.status == 200)
 			{
+				const newGroup = document.createElement('div');
+				newGroup.className = "thumbnails";
+				newGroup.style.opacity = 0;
 				const loading = document.querySelector(".loading");
 				fadeOutOpacity(loading);
+				document.body.insertBefore(newGroup, loading);
 				const response = JSON.parse(ajax.responseText);
 				const responseKeys = Object.keys(response);
 				for (let i = 0; i < responseKeys.length; i++)
@@ -93,9 +96,9 @@
 					div.appendChild(a);
 					a.appendChild(img);
 					div.className = 'img_thumb';
-					thumbnails.appendChild(div);
-					fadeIn(div, "inline-block", 100, 0);
+					newGroup.appendChild(div);
 				}
+				fadeIn(newGroup, "inline-block", 50, 5);
 			}
 			if (ajax.readyState === 4)
 					good();

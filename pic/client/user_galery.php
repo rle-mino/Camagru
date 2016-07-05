@@ -4,7 +4,6 @@
 	require_once($rootDir . '/header.php');
 	goHeader('My galery', "CHECK", $rootDir);
 ?>
-	<div id="thumbnails"></div>
 	<div class="loading" style="opacity=0">
 		<div class="bar0"></div>
 		<div class="bar1"></div>
