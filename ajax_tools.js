@@ -1,8 +1,10 @@
 const arrayMethods = Object.getOwnPropertyNames( Array.prototype );
-arrayMethods.forEach( attachArrayMethodsToNodeList );
+
 function attachArrayMethodsToNodeList(methodName) {
-    NodeList.prototype[methodName] = Array.prototype[methodName];
+	NodeList.prototype[methodName] = Array.prototype[methodName];
 }
+
+arrayMethods.forEach( attachArrayMethodsToNodeList );
 
 function sendPicToServer()
 {
