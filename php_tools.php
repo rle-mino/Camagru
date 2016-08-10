@@ -47,7 +47,7 @@
 		return ($query->fetchAll(PDO::FETCH_ASSOC));
 	}
 
-	function isAjax ()
+	function isAjax()
 	{
 		if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
 			(strtolower(getenv('HTTP_X_REQUESTED_WITH')) === 'xmlhttprequest'))
@@ -67,6 +67,53 @@
 			foreach ($errors as $error)
 				echo($error) . '<br>';
 			die();
+		}
+	}
+
+	function getImageById($sql_co, $id)
+	{
+		$query = $sql_co->prepare("SELECT source_img, likes, author, nb_comments, crea_date, id
+									FROM img WHERE id LIKE :id");
+		$query->execute(array(':id' => $id));
+		return ($query->fetch(PDO::FETCH_ASSOC));
+	}
+
+	function liked($sql_co, $login, $img_id)
+	{
+		$query = $sql_co->prepare("SELECT liker 
+									FROM likes
+									WHERE liker LIKE :login AND img_id LIKE :img_id");
+		$query->execute(array(':login' => $login, 'img_id' => $img_id));
+		if ($query->fetch(PDO::FETCH_ASSOC))
+			return TRUE;
+		return FALSE;
+	}
+
+	function removeOrAddLike($sql_co, $login, $img_id)
+	{
+		$query = $sql_co->prepare("SELECT liked
+									FROM likes
+									WHERE liker LIKE :login AND img_id LIKE :img_id");
+		$query->execute(array(':login' => $login, 'img_id' => $img_id));
+		if ($query->fetch(PDO::FETCH_ASSOC)) {
+			$liked = $query->fetch(PDO::FETCH_ASSOC);
+			$query = $sql_co->prepare("UPDATE likes SET liked = :reverse WHERE liker LIKE :login AND img_id LIKE :img_id");
+			$query->execute(array(':reverse' => $liked['liked'] ^ 1));
+			if ($liked['liked'] ^ 1) {
+				$query = $sql_co->prepare('UPDATE img SET likes = likes + 1 WHERE id LIKE :img_id');
+				$query->execute(array('img_id' => $img_id));
+			}
+			else {
+				$query = $sql_co->prepare('UPDATE img SET likes = likes - 1 WHERE id LIKE :img_id');
+				$query->execute(array('img_id' => $img_id));				
+			}
+		}
+		else {
+			$query = $sql_co->prepare("INSERT INTO likes (img_id, liker, liked)
+										VALUES (:img_id, :liker, 1");
+			$query->execute(array(':img_id' => $img_id, 'liker' => $login));
+			$query = $sql_co->prepare('UPDATE img SET likes = likes + 1 WHERE id LIKE :img_id');
+			$query->execute(array('img_id' => $img_id));
 		}
 	}
 ?>
