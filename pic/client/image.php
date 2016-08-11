@@ -15,16 +15,19 @@
 	<div id="bloc">
 		<div id="comandlikes">
 			<div id="data">
-				<div id="author">author : <?php echo $img_data['author']?></div>
-				<div id="likes">
-					<img id="likeButton" src="<?php echo($liked ? $rootDir . '/liked.png' : $rootDir . '/not_liked.png')?>" width="30px" liked="<?php echo ($liked ? 'true' : 'false')?>">
-					<?php echo $img_data['likes']?> like<?php echo($img_data['likes'] > 1 ? 's' : '')?>
+				<div id="author"><?php echo $img_data['author']?></div>
+				<div id="likeContent">
+					<button id="likeButton" class="<?php echo($liked ? 'liked' : 'notliked')?>" style="background-color:<?php echo($liked ? '#E50000' : '#FFF')?>;">LIKE</button>
+					<p><?php echo $img_data['likes']?> like<?php echo($img_data['likes'] > 1 ? 's' : '')?></p>
 				</div>
+			</div>
 			<div id="comments">
 
 			</div>
 		</div>
-		<img id="image" src="<?php echo('data:image/png;base64,' . $img_data['source_img'])?>" imgId="<?php echo $img_data['id']?>">
+		<div id="image">
+			<img src="<?php echo('data:image/png;base64,' . $img_data['source_img'])?>" imgId="<?php echo $img_data['id']?>">
+		</div>
 	</div>
 	<script defer src="<?php echo $rootDir . '/ajax_tools.js';?>"></script>
 	<script defer src="like.js" charset="utf-8"></script>

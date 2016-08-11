@@ -80,9 +80,9 @@
 
 	function liked($sql_co, $login, $img_id)
 	{
-		$query = $sql_co->prepare("SELECT liker 
+		$query = $sql_co->prepare("SELECT liker
 									FROM likes
-									WHERE liker LIKE :login AND img_id LIKE :img_id");
+									WHERE liker LIKE :login AND img_id LIKE :img_id AND liked = 1");
 		$query->execute(array(':login' => $login, 'img_id' => $img_id));
 		if ($query->fetch(PDO::FETCH_ASSOC))
 			return TRUE;
@@ -94,26 +94,40 @@
 		$query = $sql_co->prepare("SELECT liked
 									FROM likes
 									WHERE liker LIKE :login AND img_id LIKE :img_id");
-		$query->execute(array(':login' => $login, 'img_id' => $img_id));
-		if ($query->fetch(PDO::FETCH_ASSOC)) {
-			$liked = $query->fetch(PDO::FETCH_ASSOC);
-			$query = $sql_co->prepare("UPDATE likes SET liked = :reverse WHERE liker LIKE :login AND img_id LIKE :img_id");
-			$query->execute(array(':reverse' => $liked['liked'] ^ 1));
-			if ($liked['liked'] ^ 1) {
-				$query = $sql_co->prepare('UPDATE img SET likes = likes + 1 WHERE id LIKE :img_id');
-				$query->execute(array('img_id' => $img_id));
+		$query->execute(array(':login' => $login, ':img_id' => $img_id));
+		if ($liked = $query->fetch(PDO::FETCH_ASSOC))
+		{
+			$liked['liked'] = $liked['liked'] ? 0 : 1;
+			$query = $sql_co->prepare("UPDATE likes SET liked = :reverse
+										WHERE liker LIKE :login
+										AND img_id LIKE :img_id");
+			$query->execute(array(':reverse' => $liked['liked'],
+									':login' => $login,
+									':img_id' => $img_id));
+			if ($liked['liked']) {
+				$query = $sql_co->prepare('UPDATE img SET likes = likes + 1
+											WHERE id LIKE :img_id');
+				$query->execute(array(':img_id' => $img_id));
 			}
 			else {
-				$query = $sql_co->prepare('UPDATE img SET likes = likes - 1 WHERE id LIKE :img_id');
-				$query->execute(array('img_id' => $img_id));				
+				$query = $sql_co->prepare('UPDATE img SET likes = likes - 1
+											WHERE id LIKE :img_id');
+				$query->execute(array(':img_id' => $img_id));				
 			}
 		}
 		else {
 			$query = $sql_co->prepare("INSERT INTO likes (img_id, liker, liked)
-										VALUES (:img_id, :liker, 1");
-			$query->execute(array(':img_id' => $img_id, 'liker' => $login));
+										VALUES (:img_id, :liker, 1)");
+			$query->execute(array(':img_id' => $img_id, ':liker' => $login));
 			$query = $sql_co->prepare('UPDATE img SET likes = likes + 1 WHERE id LIKE :img_id');
-			$query->execute(array('img_id' => $img_id));
+			$query->execute(array(':img_id' => $img_id));
 		}
+	}
+
+	function nbLike($sql_co, $img_id)
+	{
+		$query = $sql_co->prepare("SELECT likes FROM img WHERE id LIKE :img_id");
+		$query->execute(array(':img_id' => $img_id));
+		return ($query->fetch(PDO::FETCH_ASSOC)['likes']);
 	}
 ?>

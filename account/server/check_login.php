@@ -45,7 +45,7 @@
 	else
 		$errors['login'] = 'Unknow user';
 	writeErrors($errors);
-	echo '<html>You are now connected, You will be redirected in few seconds</html>';
+	echo '<html>You are now connected, you will be redirected in few seconds</html>';
 	if (!isAjax()) {
 		echo '<meta http-equiv="refresh" content="3;url=../../index.php"/>';
 	}
