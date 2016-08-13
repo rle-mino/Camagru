@@ -1,21 +1,21 @@
 .loading {
-    position: relative;
-    margin: 100px auto;
-    width: 60px;
-    height: 50px;
-    text-align: center;
-    font-size: 10px;
+	position: relative;
+	margin: 100px auto;
+	width: 60px;
+	height: 50px;
+	text-align: center;
+	font-size: 10px;
 }
 
 .loading > div {
-    background-color: #FFF;
-    height: 100%;
-    width: 6px;
-    margin: 1px;
-    display: inline-block;
-    
-    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
-    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+	background-color: #FFF;
+	height: 100%;
+	width: 6px;
+	margin: 1px;
+	display: inline-block;
+	
+	-webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+	animation: sk-stretchdelay 1.2s infinite ease-in-out;
 }
 
 .loading .bar1 {
@@ -39,103 +39,152 @@
 }
 
 @-webkit-keyframes sk-stretchdelay {
-    0%, 40%, 100% { -webkit-transform: scaleY(0.4);}
-    20% {-webkit-transform: scaleY(1.0);}
+	0%, 40%, 100% { -webkit-transform: scaleY(0.4);}
+	20% {-webkit-transform: scaleY(1.0);}
 }
 
 @keyframes sk-stretchdelay {
-    0%, 40%, 100% { transform: scaleY(0.4); -webkit-transform: scaleY(0.4); }
-    20% { transform: scaleY(1.0); -webkit-transform: scaleY(1.0); }
+	0%, 40%, 100% { transform: scaleY(0.4); -webkit-transform: scaleY(0.4); }
+	20% { transform: scaleY(1.0); -webkit-transform: scaleY(1.0); }
 }
 
 .thumbnails {
-    text-align: center;
+	text-align: center;
 }
 
 .img_thumb {
-    display: inline-block;
+	display: inline-block;
 }
 
 .img_thumb img {
-    width: 300px;
-    margin: 10px;
+	width: 300px;
+	margin: 10px;
 }
 
 #superimposed {
-    position: absolute;
-    padding: 0;
-    margin: 0;
+	position: absolute;
+	padding: 0;
+	margin: 0;
 }
 
 #center {
-    text-align: center;
-    margin: auto;
+	text-align: center;
+	margin: auto;
 }
 
 #preview {
-    width: 600px;
-    padding: 0;
-    margin: 10px;
-    display: inline-block;
-    overflow: hidden;
+	width: 600px;
+	padding: 0;
+	margin: 10px;
+	display: inline-block;
+	overflow: hidden;
 }
 
 #result {
-    width: 600px;
-    padding: 0;
-    margin: 10px;
-    display: inline-block;
-    overflow: hidden;
+	width: 600px;
+	padding: 0;
+	margin: 10px;
+	display: inline-block;
+	overflow: hidden;
 }
+
+#data {
+	height: 60px;
+	background-color: #303030;
+	width: 420px;
+	padding: 30px;
+}
+
 #bloc {
-    background-color: #404040;
-    position: relative;
-    width: 75%;
-    height: 450px;
-    margin: auto;
+	background-color: #404040;
+	position: relative;
+	width: 1080px;
+	height: 450px;
+	padding: 0px;
+	margin-top: 45px;
+	transform: translate(-50%);
+	margin-left: 50%;
 }
 
 #comandlikes {
-    position: relative;
-    width: 50%;
-    float: left;
+	position: relative;
+	float: left;
 }
 
 #author {
-    width: 40px;
-    float: left;
-    margin-left: 10px;
-    margin-top: 10px;
+	width: 40px;
+	float: left;
+	font-size: 40px;
 }
 
 #likeContent {
-    position: absolute;
-    text-align: center;
-    right: 40px;
-    margin-left: 10px;
-    margin-top: 10px;
+	position: absolute;
+	text-align: center;
+	right: 40px;
 }
 
 #likeContent p {
-    margin-top: 7px;
+	margin-top: 7px;
 }
 
 #likeButton {
-    border: none;
-    border-radius: 2px;
-    font-size: 16px;
-    padding-left: 17px;
-    padding-right: 17px;
-    padding-bottom: 4px;
-    padding-top: 4px;
-    color: black;
-    margin: auto;
-    -webkit-transition: background-color .2s, color 0.2s;
-    transition: background-color .2s, color 0.2s;
+	border: none;
+	border-radius: 2px;
+	font-size: 16px;
+	padding-left: 17px;
+	padding-right: 17px;
+	padding-bottom: 4px;
+	padding-top: 4px;
+	margin: auto;
+	-webkit-transition: background-color .2s, color 0.2s;
+	transition: background-color .2s, color 0.2s;
 }
 
-#image {
-    position: relative;
-    float: right;
-    width: 50%;
+#blocImage {
+	position: relative;
+	float: right;
+}
+
+#comments {
+	height: 330px;
+	width: 480px;
+}
+
+#addComment {
+	margin: 0px;
+	padding: 0;
+	width: 480px;
+}
+
+textarea {
+	resize: none;
+	border: none;
+	width: 420px;
+	height: 150px;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	color: white;
+	background-color: #404040;
+	padding: 30px;
+}
+
+#addComment button {
+	margin: 0;
+	padding: 0;
+	width: 480px;
+	top: 330px;
+	height: 120px;
+	color: white;
+	background-color: #303030;
+	font-size: 20px;
+	position: absolute;
+	-webkit-transition: background-color .2s, color 0.2s;
+	-moz-transition: background-color .2s, color 0.2s;
+	transition: background-color .2s, color 0.2s;
+}
+
+#addComment button:hover {
+	background-color: #909090;
+	color: black;
 }

@@ -59,6 +59,14 @@
 							liked INT NOT NULL DEFAULT 0,
 							PRIMARY KEY (id)
 						)");
+	$err = $sql_co->query("CREATE TABLE IF NOT EXISTS comments
+							(
+							id INT NOT NULL AUTO_INCREMENT,
+							img_id INT NOT NULL,
+							commenter VARCHAR(255) NOT NULL,
+							comment MEDIUMTEXT CHARACTER SET ascii NOT NULL,
+							PRIMARY KEY (id)
+						)");
 	if (!$err)
 		die("FAIL: CREATE TABLE IMG");
 	else

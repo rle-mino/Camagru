@@ -78,6 +78,14 @@
 		return ($query->fetch(PDO::FETCH_ASSOC));
 	}
 
+	function getCommentsByID($sql_co, $id)
+	{
+		$query = $sql_co->prepare("SELECT comment, commenter
+									FROM comments WHERE img_id LIKE :img_id");
+		$query->execute(array(':img_id' => $id));
+		return($query->fetchAll(PDO::FETCH_ASSOC));
+	}
+
 	function liked($sql_co, $login, $img_id)
 	{
 		$query = $sql_co->prepare("SELECT liker
@@ -129,5 +137,18 @@
 		$query = $sql_co->prepare("SELECT likes FROM img WHERE id LIKE :img_id");
 		$query->execute(array(':img_id' => $img_id));
 		return ($query->fetch(PDO::FETCH_ASSOC)['likes']);
+	}
+
+	function addComment($sql_co, $img_id, $commenter, $comment)
+	{
+		$query = $sql_co->prepare("INSERT INTO comments (img_id, commenter, comment)
+									VALUES (:img_id, :commenter, :comment)");
+		$query->execute(array(":img_id" => $img_id, ':commenter' => $commenter, ':comment' => $comment));
+	}
+
+	function deleteComment($sql_co, $id)
+	{
+		$query = $sql_co->prepare("DELETE FROM comments WHERE id = :id");
+		$query->execute(array(':id' => $id));
 	}
 ?>

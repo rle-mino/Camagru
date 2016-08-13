@@ -15,6 +15,8 @@
 				header 	{background-color:#404040; color:white; font-family:roboto;}
 				a		{color:inherit; text-decoration: none}
 				html 	{background-color:#505050; color:white; font-family:roboto; padding:0; margin:0}
+				* 		{outline: 0;}
+				button	{border: none;}
 			</style>
 		</head>
 		<body>
