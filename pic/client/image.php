@@ -40,8 +40,16 @@
 				<?php
 					foreach ($comments as $comment) {
 ?>
-					<div class=commenter><?php echo($comment['commenter']);?></div>
-					<div class=comment><?php echo($comment['comment']);?></div>
+						<div class="comment">
+							<div class=commenter><?php echo($comment['commenter']);?></div>
+							<div class=commentContent>
+								<?php echo($comment['comment']);?>
+							</div>
+<?php
+							if ($_SESSION['login'] == $img_data['author'] || $_SESSION['login'] == $comment['commenter'])
+?>
+							<button class="deleteComment" commentid="<?php echo $comment['id']?>">Delete</button>
+						</div>
 <?php
 					}
 ?>

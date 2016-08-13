@@ -14,5 +14,5 @@
 	if (!($sql_co = connectToDB()))
 		die("An error occured") ;
 	addComment($sql_co, $_POST['img_id'], $_SESSION['login'], $_POST['comment']);
-	echo "COMMENT SENT !";
+	echo getMostRecentComment($sql_co, $_POST['img_id']);
 ?>

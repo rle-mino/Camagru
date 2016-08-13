@@ -188,3 +188,50 @@ textarea {
 	background-color: #909090;
 	color: black;
 }
+
+#comments {
+	background-color: #303030;
+	position: relative;
+	width: 1080px;
+	height: 450px;
+	padding: 0px;
+	margin: 0;
+	margin-top: 45px;
+	transform: translate(-50%);
+	margin-left: 50%;
+}
+
+.comment {
+	width: 100%;
+	vertical-align: 1px;
+	border-bottom: 1px solid #505050;
+}
+
+.commenter {
+	display: inline-block;
+	font-size: 20px;
+	margin-left: 30px;
+	width: 100px;
+}
+
+.commentContent {
+	display: inline-block;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 842px;
+}
+
+.deleteComment {
+	display: inline-block;
+	font-size: 12px;
+	width: 80px;
+	height: 40px;
+	-webkit-transition: color .2s, background-color .2s;
+	-moz-transition: color .2s, background-color .2s;
+	transition: color .2s, background-color .2s;
+}
+
+.deleteComment:hover {
+	color: white;
+	background-color: #404040;
+}

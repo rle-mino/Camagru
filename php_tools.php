@@ -80,8 +80,9 @@
 
 	function getCommentsByID($sql_co, $id)
 	{
-		$query = $sql_co->prepare("SELECT comment, commenter
-									FROM comments WHERE img_id LIKE :img_id");
+		$query = $sql_co->prepare("SELECT comment, commenter, id
+									FROM comments WHERE img_id LIKE :img_id
+									ORDER BY id DESC");
 		$query->execute(array(':img_id' => $id));
 		return($query->fetchAll(PDO::FETCH_ASSOC));
 	}
@@ -150,5 +151,12 @@
 	{
 		$query = $sql_co->prepare("DELETE FROM comments WHERE id = :id");
 		$query->execute(array(':id' => $id));
+	}
+
+	function getMostRecentComment($sql_co, $id)
+	{
+		$query = $sql_co->prepare("SELECT id FROM comments WHERE img_id LIKE :img_id ORDER BY id DESC LIMIT 1");
+		$query->execute(array(':img_id' => $id));
+		return ($query->fetch(PDO::FETCH_ASSOC)['id']);
 	}
 ?>
