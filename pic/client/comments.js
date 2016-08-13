@@ -54,14 +54,16 @@
 				newComment.appendChild(newCommenter);
 				newComment.appendChild(newCommentContent);
 				newComment.appendChild(newDeleteButton);
-				newComment.className = 'comment';
-				newCommenter.className = 'commenter';
-				newCommentContent.className = 'commentContent';
-				newDeleteButton.className = 'deleteComment';
 				newCommentContent.innerHTML = commentContent.value;
 				newCommenter.innerHTML = actualUser.innerHTML;
 				newDeleteButton.innerHTML = "Delete";
 				newDeleteButton.setAttribute('commentid', ajax.responseText);
+				newComment.className = 'comment';
+				newCommenter.className = 'commenter';
+				newCommentContent.className = 'commentContent';
+				newDeleteButton.className = 'deleteComment';
+				newDeleteButton.style.marginLeft = '7.5px';
+				newDeleteButton.addEventListener('click', deleteComment, true);
 				comments.insertBefore(newComment, comments.childNodes[0]);
 				commentContent.value = "";
 			}

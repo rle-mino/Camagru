@@ -30,6 +30,8 @@
 		evt.preventDefault();
 		const liked = likeButton.className == "liked" ? true : false;
 		likeButton.className = liked ? "notliked" : "liked";
+		likeButton.disabled = true;
+		likeButton.innerHTML = "WAIT";
 		const data = new FormData();
 		const ajax = getAjaxOBJ();
 		data.append('liker', user.innerHTML);
@@ -38,8 +40,11 @@
 			return ;
 		ajax.onreadystatechange = () =>
 		{
-			if (ajax.readyState == 4 && ajax.status == 200)
+			if (ajax.readyState == 4 && ajax.status == 200) {
 				likesCounter.innerHTML = ajax.responseText + " like" + (ajax.responseText >= 2 ? "s" : "");
+				likeButton.disabled = false;
+				likeButton.innerHTML = "LIKE";
+			}
 		};
 		ajax.open("POST", "../server/edit_like.php", true);
 		ajax.setRequestHeader('X-Requested-With', 'xmlhttprequest');

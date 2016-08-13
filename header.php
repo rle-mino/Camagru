@@ -12,11 +12,12 @@
 			<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 			<link href='style.css' rel='stylesheet' type='text/css'>
 			<style media="screen">
-				header 	{background-color:#404040; color:white; font-family:roboto;}
-				a		{color:inherit; text-decoration: none}
-				html 	{background-color:#505050; color:white; font-family:roboto; padding:0; margin:0}
-				* 		{outline: 0; margin: 0; padding: 0;}
-				button	{border: none;}
+				header 		{background-color:#404040; color:white; font-family:roboto; height: 49px}
+				a			{color:inherit; text-decoration: none}
+				html 		{background-color:#505050; color:white; font-family:roboto; padding:0; margin:0}
+				* 			{outline: 0; margin: 0; padding: 0;}
+				button		{border: none;}
+				header a	{border-right: 1px solid #F0F0F0;border-bottom: 1px solid #F0F0F0 ; padding: 30px; top: 50%}
 			</style>
 		</head>
 		<body>

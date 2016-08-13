@@ -2,7 +2,7 @@
 	$rootDir = '../..';
 	require_once($rootDir . '/php_tools.php');
 	require_once($rootDir . '/header.php');
-	if (!goHeader('Take a picture', "CHECK", $rootDir))
+	if (!goHeader('THE PICTURE', "CHECK", $rootDir))
 		return ;
 	$sql_co = connectToDB();
 	if (!$sql_co)
@@ -18,13 +18,13 @@
 			<div id="data">
 				<div id="author"><?php echo $img_data['author']?></div>
 				<div id="likeContent">
+					<p id="likes"><?php echo $img_data['likes']?> like<?php echo($img_data['likes'] > 1 ? 's' : '')?></p>
 					<button id="likeButton"
 							class="<?php echo($liked ? 'liked' : 'notliked')?>" 
 							style="background-color:<?php echo($liked ? '#E50000' : '#FFF')?>;
 							color:<?php echo($liked ? 'white' : 'black');?>">
 						LIKE
 						</button>
-					<p id="likes"><?php echo $img_data['likes']?> like<?php echo($img_data['likes'] > 1 ? 's' : '')?></p>
 				</div>
 			</div>
 		</div>
@@ -42,9 +42,7 @@
 ?>
 						<div class="comment">
 							<div class=commenter><?php echo($comment['commenter']);?></div>
-							<div class=commentContent>
-								<?php echo($comment['comment']);?>
-							</div>
+							<div class=commentContent><?php echo($comment['comment']);?></div>
 <?php
 							if ($_SESSION['login'] == $img_data['author'] || $_SESSION['login'] == $comment['commenter'])
 ?>
