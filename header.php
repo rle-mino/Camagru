@@ -12,12 +12,56 @@
 			<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 			<link href='style.css' rel='stylesheet' type='text/css'>
 			<style media="screen">
-				header 		{background-color:#404040; color:white; font-family:roboto; height: 49px}
-				a			{color:inherit; text-decoration: none}
-				html 		{background-color:#505050; color:white; font-family:roboto; padding:0; margin:0}
-				* 			{outline: 0; margin: 0; padding: 0;}
-				button		{border: none;}
-				header a	{border-right: 1px solid #F0F0F0;border-bottom: 1px solid #F0F0F0 ; padding: 30px; top: 50%}
+				* 			{
+						outline: 0;
+						margin: 0;
+						padding: 0;
+						}
+				header		{
+						background-color:#404040;
+						color:white;
+						font-family:roboto;
+						height: 49px;
+						margin-top: -1px;
+						}
+				a			{
+						color:inherit;
+						text-decoration: none;
+						}
+				html 		{
+						background-color:#505050;
+						color:white;
+						font-family:roboto;
+						padding:0;
+						margin:0;
+						}
+				button		{
+						border: none;
+						}
+				header a	{
+							background-color: #303030;
+    						color: white;
+    						padding: 15px 25px;
+    						text-align: center; 
+    						text-decoration: none;
+    						display: inline-block;
+							margin-left: -4px;
+							margin-left: -4px;
+							-webkit-transition: background-color .2s, color .2s;
+							-moz-transition: background-color .2s, color .2s;
+							transition: background-color .2s, color .2s;
+						}
+				header a:hover	{
+							background-color: #808080;
+    						color: white;
+						}
+				.right		{
+							float:right;
+						}
+				#camagru {
+					font-size: 40px;
+					padding: 1px 30px;
+				}
 			</style>
 		</head>
 		<body>
@@ -34,15 +78,15 @@
 				else
 				{
 ?>
-					<a href="<?php echo $rootDir . '/index.php'?>">Camagru</a>
+					<a id="camagru" href="<?php echo $rootDir . '/index.php'?>">CAMAGRU</a>
 <?php
 					if (isConnected($_SESSION))
 					{
 ?>
-						<a id="login" href="<?php echo $rootDir . '/account/client/modif_account.php'?>"><?php echo $_SESSION['login'];?></a>
-						<a href="<?php echo $rootDir . '/account/server/logout.php'?>">logout</a>
-						<a href="<?php echo $rootDir . '/pic/client/take.php'?>">Take a picture</a>
-						<a href="<?php echo $rootDir . '/pic/client/user_galery.php'?>">Your pictures</a>
+						<a class="right" id="login" href="<?php echo $rootDir . '/account/client/modif_account.php'?>"><?php echo $_SESSION['login'];?></a>
+						<a class="right" href="<?php echo $rootDir . '/account/server/logout.php'?>">logout</a>
+						<a class="right" href="<?php echo $rootDir . '/pic/client/take.php'?>">Take a picture</a>
+						<a class="right" href="<?php echo $rootDir . '/pic/client/user_galery.php'?>">Your pictures</a>
 <?php
 					}
 				}
