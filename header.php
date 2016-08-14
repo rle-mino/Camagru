@@ -70,8 +70,11 @@
 				if (!isConnected($_SESSION) && $check == "CHECK")
 				{
 ?>
+					<a id="camagru" href="<?php echo $rootDir . '/index.php'?>">CAMAGRU</a>
+			</header>
+			<body>
 					<meta http-equiv="refresh" content="3;url=<?php echo $rootDir . '/account/client/login.php'?>"/>
-					<div>You must be connected...</div>
+					<div class="errorBeforeRedir">You must be connected...</div>
 <?php
 					return (FALSE);
 				}

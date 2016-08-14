@@ -7,6 +7,7 @@ form.addEventListener('submit', (e) =>
 	form.querySelector("[type='submit']").disable = true;
 	const errorsInForm = form.querySelectorAll('.isError');
 	errorsInForm.forEach((errorInForm) => {
+		errorInForm.style.width = '0px';
 		errorInForm.classList.remove('isError');
 		errorInForm.parentNode.removeChild(errorInForm);
 	});

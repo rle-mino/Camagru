@@ -7,7 +7,7 @@
 	{
 ?>
 		<meta http-equiv="refresh" content="3;url=<?php echo $rootDir . '/index.php'?>"/>
-		<div>You are already connected...</div>
+		<div class="errorBeforeRedir">You are already connected...</div>
 <?php
 	} else {
 ?>
@@ -15,9 +15,9 @@
 		<p>Login or mail</p><input  type="text" name="login" value="">
 		<p>Password</p><input type="password" name="passwd" value="">
 		<input type="submit" name="submit" value="GO">
+		<a class="suppForm" href="<?php echo $rootDir . "/account/client/forgot_password.php"?>"><p>Forgot password ?</p></a>
+		<a class="suppForm" href="<?php echo $rootDir . "/account/client/create_account.php";?>"><p>Sign up !</p></a>
 	</form>
-	<a href="<?php echo $rootDir . "/account/client/forgot_password.php"?>">Forgot password ?</a>
-	<a href="<?php echo $rootDir . "/account/client/create_account.php";?>">Sign up !</a>
 	<script defer src="../../ajax_tools.js"></script>
 	<script defer src="login.js"></script>
 	</body>

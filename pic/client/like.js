@@ -9,7 +9,7 @@
 	likeButton.addEventListener('mouseleave', mouseleave, true);
 	likeButton.addEventListener('click', like, true);
 
-	function mouseover(evt)
+	const mouseover = evt =>
 	{
 		evt.preventDefault();
 		const liked = likeButton.className == "liked" ? true : false;
@@ -17,7 +17,7 @@
 		likeButton.style.color = liked ? "#000" : "#FFF";
 	}
 
-	function mouseleave(evt)
+	const mouseleave = evt =>
 	{
 		evt.preventDefault();
 		const liked = likeButton.className == "liked" ? true : false;
@@ -25,7 +25,7 @@
 		likeButton.style.color = liked ? "#FFF" : "#000";
 	}
 
-	function like(evt)
+	const like = evt =>
 	{
 		evt.preventDefault();
 		const liked = likeButton.className == "liked" ? true : false;

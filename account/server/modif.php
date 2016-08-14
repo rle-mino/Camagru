@@ -28,6 +28,9 @@
 			// MAIL OR PASSWD
 			if ($user['mail'] != $_POST['mail'] && filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL))
 				$new['mail'] = $_POST['mail'];
+			else if ($user['mail'] != $_POST['mail'] && !filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL))
+				$errors['mail'] = "New mail invalid";
+			writeErrors($errors);
 			if (isset($_POST['new_passwd']) && $_POST['new_passwd'] != '')
 				$new['passwd'] = hash('whirlpool', $_POST['new_passwd']);
 			// UPDATE

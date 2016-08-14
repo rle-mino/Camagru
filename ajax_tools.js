@@ -31,7 +31,7 @@ function sendPicToServer()
 			button.disabled = false;
 			button = form.querySelector('[type="submit"]');
 			button.value = ajax.responseText;
-			button.disables = false;
+			button.disabled = false;
 		}
 	};
 	ajax.open('POST', form.getAttribute('action'), true);

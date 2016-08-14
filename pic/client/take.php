@@ -15,11 +15,11 @@
 			<video id="video"></video>
 			<input type="file" name="fileFromUser" id="fileFromUser" accept="image/png, image/jpeg">
 			<button id="webcamSelector">Use your webcam</button>
-			<button id="take">Take a picture</button>
+			<button id="take">Take</button>
 		</div>
 		<canvas id="canvas" style="display:none"></canvas>
 		<div id="result">
-			<img src="http://12emesport.fr/sites/default/files/lovehard/apn_logo.png" alt="default" id="photo" width="600px"/>
+			<img src="../../apn_logo.png" alt="default" id="photo" width="600px"/>
 			<form id="sendImage" method="post" action="../server/save_image.php">
 				<input type="text" style="display:none" name="imgsrc">
 				<input type="text" style="display:none" name="imgabove">

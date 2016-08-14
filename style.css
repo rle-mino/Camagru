@@ -1,0 +1,10 @@
+input[type=submit] {
+    color: black;
+}
+
+.errorBeforeRedir {
+	margin-top: 71px;
+    padding: 47px;
+    text-align: center;
+	background-color: #303030;
+}

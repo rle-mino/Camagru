@@ -11,8 +11,8 @@
 			<p>Password</p><input type="password" name="old_passwd" value="">
 			<p>New password</p><input type="password" name="new_passwd" value="">
 			<input type="submit" name="submit" value="modify">
+			<a class="suppForm" href="delete.php"><p>Delete my account</p></a>
 		</form>
-		<a href="delete.php">Delete my account</a>
 		<script src="modif_account.js"></script>
 		<script src="<?php echo $rootDir . '/ajax_tools.js';?>"></script>
 	</body>
