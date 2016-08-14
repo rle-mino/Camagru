@@ -1,3 +1,7 @@
+footer {
+	text-align: center;
+}
+
 .errorBeforeRedir {
 	margin-top: 71px;
     padding: 47px;
@@ -5,13 +9,13 @@
 	background-color: #303030;
 }
 
-button {
+button, #sendImage input[type=submit] {
 	-webkit-transition: background-color .2s, color 0.2s;
 	-moz-transition: background-color .2s, color 0.2s;
 	transition: background-color .2s, color 0.2s;
 }
 
-#preview button {
+#preview button, #sendImage input[type=submit] {
 	text-decoration: none;
 	width: 25%;
 	background-color: #303030;
@@ -28,7 +32,7 @@ button {
 	margin-top: 10px;
 }
 
-#preview button:hover {
+#preview button:hover, #sendImage input[type=submit]:hover {
 	background-color: #606060;
 }
 
@@ -197,11 +201,6 @@ button {
 	float: right;
 }
 
-/*#comments {*/
-/*	height: 330px;*/
-/*	width: 480px;*/
-/*}*/
-
 #addComment {
 	position: relative;
 	width: 480px;
@@ -281,4 +280,112 @@ textarea {
 .deleteComment:hover {
 	color: white;
 	background-color: #404040;
+}
+
+/*
+***
+***
+***
+***
+***							MOBILE RULES
+***
+***
+***
+***
+*/
+
+@media screen and (max-width: 1080px) {
+	.thumbnails {
+		margin: 0;
+		padding: 0;
+		width: 100%;
+	}
+
+	.img_thumb {
+		display: block;
+		padding: 0;
+		margin-top : 19px;
+	}
+
+	.img_thumb img {
+		padding: 0;
+		margin: 0;
+		width: 98%;
+	}
+
+	#preview {
+		text-align: center;
+		padding: 0px;
+		margin: 0;
+	}
+
+	#preview button, #preview input[type=file] {
+		position: relative;
+		width: 101%;
+		display: block;
+		margin-top: -4px;
+	}
+	#sendImage input[type=submit] {
+		width: 100%;
+	}
+
+	#bloc {
+		width: 100%;
+		position:relative;
+	}
+
+	#comandlikes  {
+		position: relative;
+		width: 100%;
+	}
+
+	#data {
+		position: relative;
+		width: 100%;
+	}
+
+	#blocImage {
+		position:relative;
+		background-color: #202020;
+		width:100%;
+		text-align: center;
+	}
+
+	#addComment {
+		top: 495px;
+		position: absolute;
+		width: 100%;
+	}
+
+	#addComment textarea {
+		padding: 20px;
+		margin-top: 55px;
+		width: 95%;
+		height: 119px;
+	}
+
+	#addComment button {
+		width: 100%;
+	}
+
+	#comments {
+		position: absolute;
+		top: 873px;
+		width: 100%;
+	}
+
+	.commenter {
+		margin: 0;
+		padding: 0;
+	}
+
+	.commentContent {
+		width: 75%;
+		padding: 0;
+		margin: 0;
+	}
+
+	.commenter {
+		margin-left: 2%;
+	}
 }

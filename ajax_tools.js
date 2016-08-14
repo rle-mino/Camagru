@@ -9,13 +9,17 @@ arrayMethods.forEach( attachArrayMethodsToNodeList );
 function sendPicToServer()
 {
 	const form = document.querySelector('#sendImage');
-	const data = new FormData(form);
+	const result = document.querySelector('#result');
+	const data = {
+		imgsrc: result.querySelector('#photo').getAttribute('src'),
+		imgabove: result.querySelector('#superimposed').getAttribute('src')
+	};
 	const ajax = getAjaxOBJ();
 	if (!ajax)
 		return (false);
 	ajax.onreadystatechange = () =>
 	{
-		if (ajax.readyState !== 4)
+		if (ajax.readyState == 1)
 		{
 			var button = document.querySelector('#take');
 			button.innerHTML = 'loading...';
@@ -24,7 +28,7 @@ function sendPicToServer()
 			button.value = 'loading...';
 			button.disabled = true;
 		}
-		if (ajax.readyState === 4)
+		if (ajax.readyState == 4)
 		{
 			button = document.querySelector('#take');
 			button.innerHTML = "Take a picture";
@@ -34,9 +38,9 @@ function sendPicToServer()
 			button.disabled = false;
 		}
 	};
-	ajax.open('POST', form.getAttribute('action'), true);
+	ajax.open('POST', '../server/save_image.php', true);
 	ajax.setRequestHeader('X-Requested-With', 'xmlhttprequest');
-	ajax.send(data);
+	ajax.send(JSON.stringify(data));
 }
 
 function queryHandler(form, buttonValue, linkToRedir)

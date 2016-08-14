@@ -17,3 +17,5 @@
 		<script src="<?php echo $rootDir . '/ajax_tools.js';?>"></script>
 	</body>
 </html>
+
+	<?php require_once($rootDir . '/footer.html')?>

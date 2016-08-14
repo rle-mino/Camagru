@@ -32,3 +32,5 @@
 	}
 ?>
 </html>
+
+	<?php require_once($rootDir . '/footer.html')?>

@@ -29,3 +29,5 @@
 	</div>
 	<script defer src="<?php echo $rootDir . '/ajax_tools.js';?>"></script>
 	<script defer src="take.js" charset="utf-8"></script>
+
+	<?php require_once($rootDir . '/footer.html')?>

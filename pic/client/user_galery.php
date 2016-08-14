@@ -14,3 +14,5 @@
 	<script src="../../ajax_tools.js"></script>
 	<script src="../../pic/client/user_galery.js"></script>
 </body>
+
+	<?php require_once($rootDir . '/footer.html')?>

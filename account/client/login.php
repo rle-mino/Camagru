@@ -24,3 +24,5 @@
 </html>
 <?php }
 ?>
+
+	<?php require_once($rootDir . '/footer.html')?>

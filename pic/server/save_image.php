@@ -1,17 +1,17 @@
 <?php
 	session_start();
+	$data = (array)json_decode(file_get_contents('php://input'));
 	$rootDir = '../..';
 	require_once($rootDir . '/php_tools.php');
 	$err = "An error occured";
 	if (!isConnected($_SESSION))
 		die($err);
-	if (!isset($_POST['imgsrc']) || $_POST['imgsrc'] == '')
+	if (!isset($data['imgsrc']) || $data['imgsrc'] == '')
 		die($err);
-	$type = $_POST['imgsrc'][11] == 'j' ? 'jpeg' : 'png';
-	$under = str_replace('data:image/' . $type . ';base64,', '', $_POST['imgsrc']);
-	$under = base64_decode($under);
-	$under = imagecreatefromstring($under);
-	$above = imagecreatefrompng($_POST['imgabove']);
+	$type = $data['imgsrc'][11] == 'j' ? 'jpeg' : 'png';
+	$under = explode(',', $data['imgsrc'])[1];
+	$under = imagecreatefromstring(base64_decode($under));
+	$above = imagecreatefrompng($data['imgabove']);
 	$ret = imagecopy($under, $above, 0, 0, 0, 0, 600, 450);
 	if (!$ret)
 		die($err);
@@ -32,3 +32,4 @@
 		die($err);
 	echo "Image saved !";
 ?>
+

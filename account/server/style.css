@@ -2,10 +2,6 @@ footer {
 	text-align: center;
 }
 
-input[type=submit] {
-    color: black;
-}
-
 .errorBeforeRedir {
 	margin-top: 71px;
     padding: 47px;

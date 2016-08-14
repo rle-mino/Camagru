@@ -7,6 +7,6 @@
 	$_SESSION['login'] = NULL;
 ?>
 	<meta http-equiv="refresh" content="3;url=<?php echo $rootDir . '/account/client/login.php'?>"/>
-	<div>You are now disconnected</div>
+	<div class="errorBeforeRedir"><p>You are now disconnected<p></div>
 <?php
 ?>

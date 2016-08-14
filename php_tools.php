@@ -1,4 +1,5 @@
 <?php
+
 	function connectToDB()
 	{
 		include('config/database.php');
@@ -15,6 +16,13 @@
 	function isConnected($session)
 	{
 		if (isset($session) && isset($session['login']) && $session['login'] != "")
+			return (TRUE);
+		return (FALSE);
+	}
+
+	function isAValidPassword($pass)
+	{
+		if (preg_match('/(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8}/', $pass))
 			return (TRUE);
 		return (FALSE);
 	}

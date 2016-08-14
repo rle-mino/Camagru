@@ -12,3 +12,6 @@
 		<script src="forgot_password.js"></script>
 	</body>
 </html>
+
+
+<?php require_once($rootDir . '/footer.html')?>

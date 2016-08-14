@@ -55,3 +55,8 @@
 	<script defer src="<?php echo $rootDir . '/ajax_tools.js';?>"></script>
 	<script defer src="like.js" charset="utf-8"></script>
 	<script defer src="comments.js" charset="utf-8"></script>
+
+	</body>
+
+		<?php require_once($rootDir . '/footer.html')?>
+

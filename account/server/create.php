@@ -11,6 +11,10 @@
 	if ((!isset($_POST['passwd']) || $_POST['passwd'] == "")) {
 		$errors['passwd'] = 'You must specify a password';
 	}
+	if ((isset($_POST['passwd']) && !isAValidPassword($_POST['passwd'])))
+	{
+		$errors['passwd'] = "Unsecure password";
+	}
 	if ((!isset($_POST['passwd_confirm']) || $_POST['passwd_confirm'] == "")) {
 		$errors['passwd_confirm'] = 'You must confirm your password';
 	}

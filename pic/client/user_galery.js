@@ -27,27 +27,6 @@
 		return -c * (t*t*t*t - 1) + b;
 	}
 
-	function fadeIn(element, display, initMargin, endMargin) {
-		element.style.opacity = 0;
-		element.style.marginTop = initMargin + 'px';
-		element.style.display = display || "block";
-		const duration = 5000;
-		const startTime = new Date();
-		(function fade() {
-			let actualMargin = parseInt(element.style.marginTop);
-			let actualOpacity = parseFloat(element.style.opacity);
-			actualOpacity += actualOpacity <= 1 ? 0.05 : 0;
-			const time = new Date() - startTime;
-			actualMargin = easing(time, actualMargin, endMargin - actualMargin, duration);
-			if (actualOpacity <= 1)
-				element.style.opacity = actualOpacity;
-			if (actualMargin > endMargin)
-				element.style.marginTop = actualMargin + 'px';
-			if (actualOpacity <= 1 || time > duration)
-				requestAnimationFrame(fade);
-		})();
-	}
-
 	function fadeOutOpacity(element, display) {
 		element.style.opacity = 1;
 		element.style.display = display || "block";
@@ -69,13 +48,11 @@
 			if (ajax.readyState == 1)
 			{
 				const loading = document.querySelector('.loading');
-				fadeIn(loading);
 			}
 			if (ajax.readyState === 4 && ajax.status == 200)
 			{
 				const newGroup = document.createElement('div');
 				newGroup.className = "thumbnails";
-				newGroup.style.opacity = 0;
 				const loading = document.querySelector(".loading");
 				fadeOutOpacity(loading);
 				document.body.insertBefore(newGroup, loading);
@@ -98,7 +75,6 @@
 					div.className = 'img_thumb';
 					newGroup.appendChild(div);
 				}
-				fadeIn(newGroup, "inline-block", 50, 5);
 			}
 			if (ajax.readyState === 4)
 					good();
