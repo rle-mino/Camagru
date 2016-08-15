@@ -95,6 +95,13 @@
 		return($query->fetchAll(PDO::FETCH_ASSOC));
 	}
 
+	function getMailByLogin($sql_co, $login)
+	{
+		$query = $sql_co->prepare("SELECT mail FROM users WHERE login LIKE :login");
+		$query->execute(array(':login' => $login));
+		return ($query->fetch(PDO::FETCH_ASSOC));
+	}
+
 	function liked($sql_co, $login, $img_id)
 	{
 		$query = $sql_co->prepare("SELECT liker

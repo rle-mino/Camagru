@@ -12,3 +12,66 @@ input[type=submit] {
     text-align: center;
 	background-color: #303030;
 }
+
+.thumbnails {
+	text-align: center;
+}
+
+.img_thumb {
+	display: inline-block;
+}
+
+.img_thumb img {
+	width: 300px;
+	margin: 10px;
+}
+
+.loading {
+	position: relative;
+	margin: 100px auto;
+	width: 60px;
+	height: 50px;
+	text-align: center;
+	font-size: 10px;
+}
+
+.loading > div {
+	background-color: #FFF;
+	height: 100%;
+	width: 6px;
+	margin: 1px;
+	display: inline-block;
+	
+	-webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+	animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.loading .bar1 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.loading .bar2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.loading .bar3 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.loading .bar4 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+	0%, 40%, 100% { -webkit-transform: scaleY(0.4);}
+	20% {-webkit-transform: scaleY(1.0);}
+}
+
+@keyframes sk-stretchdelay {
+	0%, 40%, 100% { transform: scaleY(0.4); -webkit-transform: scaleY(0.4); }
+	20% { transform: scaleY(1.0); -webkit-transform: scaleY(1.0); }
+}

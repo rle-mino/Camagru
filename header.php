@@ -67,6 +67,13 @@
 		<body>
 			<header>
 <?php
+				if (!isConnected($_SESSION) && $check == "LOG")
+				{
+?>
+					<a class="right" href="account/client/login.php">sign in</a>
+					<a class="right" href="account/client/create_account.php">sign up</a>
+<?php
+				}
 				if (!isConnected($_SESSION) && $check == "CHECK")
 				{
 ?>

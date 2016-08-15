@@ -5,7 +5,8 @@
 			imgID = document.querySelector('#image').getAttribute('imgid'),
 			deleteButtons = document.querySelectorAll('.deleteComment'),
 			commentsList = document.querySelector('#comments'),
-			actualUser = document.querySelector('#login');
+			actualUser = document.querySelector('#login'),
+			author = document.querySelector('#author');
 
 	submit.addEventListener('click', comment, true);
 	deleteButtons.map( (deleteButton) => deleteButton.addEventListener('click', deleteComment, true) );
@@ -37,6 +38,7 @@
 		const data = new FormData;
 		data.append('comment', commentContent.value);
 		data.append('img_id', imgID);
+		data.append('img_author', author.innerHTML);
 		submit.disabled = true;
 		submit.innerHTML = "PLEASE WAIT...";
 		const ajax = getAjaxOBJ();
