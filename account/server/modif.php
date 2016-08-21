@@ -30,8 +30,10 @@
 				$new['mail'] = $_POST['mail'];
 			else if ($user['mail'] != $_POST['mail'] && !filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL))
 				$errors['mail'] = "New mail invalid";
+			if (isset($_POST['new_passwd']) && $_POST['new_passwd'] != '' && !isAValidPassword($_POST['new_passwd']))
+				$errors['new_passwd'] = "Unsecure password";
 			writeErrors($errors);
-			if (isset($_POST['new_passwd']) && $_POST['new_passwd'] != '')
+			if (isset($_POST['new_passwd']) && $_POST['new_passwd'] != '' && isAValidPassword($_POST['new_passwd']))
 				$new['passwd'] = hash('whirlpool', $_POST['new_passwd']);
 			// UPDATE
 			$ret = NULL;

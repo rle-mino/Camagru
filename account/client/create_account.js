@@ -37,6 +37,7 @@ form.addEventListener('submit', (e) =>
 					inputs.forEach((input) => input.value = "");
 					successButton.disabled = true;
 					successButton.value = 'Success';
+					window.setTimeout("location=('../../index.php');",3000);
 				}
 			}
 		};

@@ -44,11 +44,13 @@
 							<div class=commenter><?php echo($comment['commenter']);?></div>
 							<div class=commentContent><?php echo($comment['comment']);?></div>
 <?php
-							if ($_SESSION['login'] == $img_data['author'] || $_SESSION['login'] == $comment['commenter'])
+							if ($_SESSION['login'] == $img_data['author'] || $_SESSION['login'] == $comment['commenter']) {
+
 ?>
 							<button class="deleteComment" commentid="<?php echo $comment['id']?>">Delete</button>
 						</div>
 <?php
+							}
 					}
 ?>
 	</div>
